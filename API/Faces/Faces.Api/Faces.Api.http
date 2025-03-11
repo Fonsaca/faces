@@ -1,0 +1,6 @@
+@Faces.Api_HostAddress = http://localhost:5195
+
+GET {{Faces.Api_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
