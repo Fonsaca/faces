@@ -1,11 +1,5 @@
 ﻿using Faces.Domain.Util;
-using System;
-using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using System.Linq.Expressions;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Faces.Domain.Entities
 {
@@ -141,6 +135,32 @@ namespace Faces.Domain.Entities
                 return (false, "A manager is required");
 
             return (true, "Manager and Job function is correctly set");
+        }
+
+
+        public bool HasGreaterHierarchyJobFunction(Employee employeeToCreate)
+        {
+            return this.JobFunction.HierarchyLevel > employeeToCreate.JobFunction.HierarchyLevel;
+        }
+
+        public void ValidateToCreateOrUpdate(Employee authEmployeeCreating)
+        {
+            if (authEmployeeCreating.HasGreaterHierarchyJobFunction(this))
+                throw new UnauthorizedAccessException($"You can't create an employee with high priveleges");
+
+            bool isValid;
+            string message;
+
+            (isValid, message) = HasRequiredFields();
+
+            if (!isValid)
+                throw new MissingFieldException(message);
+
+
+            (isValid, message) = HasManagerOrIsHighestJobFunction();
+
+            if(!isValid)
+                throw new MissingFieldException(message);
         }
 
     }

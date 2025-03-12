@@ -1,6 +1,16 @@
+using Faces.Api;
+using Faces.Application.Factories;
+using Faces.Application.Services;
+using Faces.Database.Repositories;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
+builder.Services.AddTransient<IJobFunctionService, JobFunctionService>();
+builder.Services.AddTransient<IJobFunctionRepository, JobFunctionRepository>();
+builder.Services.AddTransient<IEmployeeFactory, EmployeeFactory>();
+builder.Services.AddTransient<IEmployeeService, EmployeeService>();
+builder.Services.AddTransient<IAuthenticatedEmployee, ApiAuthenticatedEmployee>();
 
 builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
