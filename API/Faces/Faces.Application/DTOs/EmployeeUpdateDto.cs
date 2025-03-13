@@ -18,7 +18,7 @@ namespace Faces.Application.DTOs
 
         public string DocNumber { get; set; }
 
-        public DateOnly BirthDate { get; set; }
+        public DateTime BirthDate { get; set; }
 
         public string JobFunctionCode { get; set; }
 

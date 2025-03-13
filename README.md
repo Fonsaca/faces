@@ -35,15 +35,26 @@ An employee should have the following attributes:
 
 ## 📦 Installation
 
-### TODO
+### Download latest postgres docker image
+docker pull postgres
 
-- Add installation instructions.
+
+### Build .NET API
+
+
+### Build Angular App
+
+
 
 ## 📖 How to Use
 
-### TODO
+### Run API
+docker run --name facesapi -p 80:8080 -d facesapi
 
-- Add usage instructions with examples and images.
+
+### Run postgres
+docker run --name postgres -e POSTGRES_USER=admin -e POSTGRES_PASSWORD=admin -p 25100:5432 -d postgres
+
 
 ## ✅ Tests
 

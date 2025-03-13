@@ -35,7 +35,7 @@ namespace Faces.Application.Factories
                 FirstName = employeeUpdateDto.FirstName,
                 LastName = employeeUpdateDto.LastName,
                 DocNumber = employeeUpdateDto.DocNumber,
-                BirthDate = employeeUpdateDto.BirthDate,
+                BirthDate = DateOnly.FromDateTime(employeeUpdateDto.BirthDate),
                 Email = employeeUpdateDto.Email,
                 JobFunction = _jobFunctionRepository.GetByCode(employeeUpdateDto.JobFunctionCode),
             };
@@ -46,7 +46,7 @@ namespace Faces.Application.Factories
 
             foreach (var phone in employeeUpdateDto.Phones)
             {
-                employee.Phones.Add(new Phone(phone.Label, phone.Number));
+                employee.Phones.Add(new Phone(phone.ID ,phone.Label, phone.Number));
             }
 
 

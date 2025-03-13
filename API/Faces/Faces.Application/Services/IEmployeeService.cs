@@ -10,7 +10,7 @@ namespace Faces.Application.Services
 
         List<Employee> GetAll(); //TODO pagination
 
-        Employee GetById(int id);
+        Employee? GetById(int id);
 
         void Create(EmployeeUpdateDto employeeDto);
         
@@ -38,7 +38,7 @@ namespace Faces.Application.Services
             _employeeRepository = employeeRepository;
         }
 
-
+        //todo unit tests
         public void Create(EmployeeUpdateDto employeeDto)
         {
             var employee = _employeeFactory.CreateFrom(employeeDto);
@@ -65,7 +65,7 @@ namespace Faces.Application.Services
 
         public List<Employee> GetAll() => _employeeRepository.GetAll();
 
-        public Employee GetById(int id) => _employeeRepository.GetById(id);
+        public Employee? GetById(int id) => _employeeRepository.GetById(id);
 
         
     }

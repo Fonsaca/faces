@@ -1,4 +1,5 @@
 ﻿using Faces.Application.Services;
+using Faces.Database.Repositories;
 using Faces.Domain.Entities;
 
 namespace Faces.Api
@@ -9,12 +10,12 @@ namespace Faces.Api
 
         public Employee? Employee { get; private set; }
 
-        public ApiAuthenticatedEmployee(IEmployeeService employeeService)
+        public ApiAuthenticatedEmployee(IEmployeeRepository employeeRepository)
         {
             //TODO get from header jwt
             IsAuthenticated = true;
 
-            Employee = employeeService.GetById(1);
+            Employee = employeeRepository.GetById(4);
         }
     }
 }

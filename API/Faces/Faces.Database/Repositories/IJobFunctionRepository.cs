@@ -1,28 +1,39 @@
-﻿using Faces.Domain.Entities;
+﻿using Faces.Database.EF;
+using Faces.Domain.Entities;
 
 namespace Faces.Database.Repositories
 {
     public interface IJobFunctionRepository
     {
         List<JobFunction> GetAll();
-        JobFunction GetByCode(string code);
+
+        JobFunction? GetByCode(string code);
     }
 
     internal class JobFunctionRepository : IJobFunctionRepository
     {
-        public List<JobFunction> GetAll()
+
+        private readonly FacesDbContext _context;
+
+        public JobFunctionRepository(FacesDbContext context)
         {
-            return new List<JobFunction>()
-            {
-                new JobFunction("0001","Analyst",10),
-                new JobFunction("0002","CEO",JobFunction.HIGH_HIERARCHY),
-                new JobFunction("0003","Tech Leader",100)
-            }; //TODO get from database
+            _context = context;
         }
 
-        public JobFunction GetByCode(string code)
+
+        public List<JobFunction> GetAll()
         {
-            return GetAll().FirstOrDefault(x => x.Code.Equals(code)); //TODO get from database
+            return _context.JobFunctions
+                .Select(x => x.ConvertToDomain())
+                .ToList();
+        }
+
+        public JobFunction? GetByCode(string code)
+        {
+            return _context.JobFunctions
+                 .Where(x => x.Code.Equals(code))
+                 .Select(x => x.ConvertToDomain())
+                 .FirstOrDefault();
         }
     }
 }
