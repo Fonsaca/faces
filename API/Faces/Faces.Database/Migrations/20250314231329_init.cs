@@ -42,7 +42,8 @@ namespace Faces.Database.Migrations
                     ManagerID = table.Column<int>(type: "integer", nullable: true),
                     CreationDate = table.Column<DateTime>(type: "timestamp with time zone", nullable: false),
                     IsDeleted = table.Column<bool>(type: "boolean", nullable: false),
-                    DeletionDate = table.Column<DateTime>(type: "timestamp with time zone", nullable: true)
+                    DeletionDate = table.Column<DateTime>(type: "timestamp with time zone", nullable: true),
+                    PasswordHash = table.Column<string>(type: "text", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -86,10 +87,17 @@ namespace Faces.Database.Migrations
                 columns: new[] { "Code", "HierarchyLevel", "Name" },
                 values: new object[,]
                 {
-                    { "0001", (short)10, "Analyst" },
-                    { "0002", (short)1000, "CEO" },
-                    { "0003", (short)100, "Tech Leader" }
+                    { "0001", (short)1000, "RH Manager" },
+                    { "0002", (short)1000, "Tech Leader" },
+                    { "0003", (short)100, "Analyst" },
+                    { "0004", (short)1, "Intern" }
                 });
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Employees_DocNumber",
+                table: "Employees",
+                column: "DocNumber",
+                unique: true);
 
             migrationBuilder.CreateIndex(
                 name: "IX_Employees_JobFunctionCode",

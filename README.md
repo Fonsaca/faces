@@ -32,6 +32,7 @@ An employee should have the following attributes:
 - Entity Framework
 - Serilog
 - PrimeNg
+- Jwt
 
 ## 📦 Installation
 

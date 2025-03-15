@@ -12,8 +12,8 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace Faces.Database.Migrations
 {
     [DbContext(typeof(FacesDbContext))]
-    [Migration("20250313004509_init")]
-    partial class init
+    [Migration("20250314233507_adm2")]
+    partial class adm2
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -73,13 +73,35 @@ namespace Faces.Database.Migrations
                     b.Property<int?>("ManagerID")
                         .HasColumnType("integer");
 
+                    b.Property<string>("PasswordHash")
+                        .IsRequired()
+                        .HasColumnType("text");
+
                     b.HasKey("ID");
+
+                    b.HasIndex("DocNumber")
+                        .IsUnique();
 
                     b.HasIndex("JobFunctionCode");
 
                     b.HasIndex("ManagerID");
 
                     b.ToTable("Employees");
+
+                    b.HasData(
+                        new
+                        {
+                            ID = -1,
+                            BirthDate = "1990-01-01",
+                            CreationDate = new DateTime(2025, 3, 14, 23, 35, 0, 0, DateTimeKind.Utc),
+                            DocNumber = "99999999999",
+                            Email = "admin.rh@faces.com",
+                            FirstName = "admin",
+                            IsDeleted = false,
+                            JobFunctionCode = "0001",
+                            LastName = "Rh",
+                            PasswordHash = "i+rcXhRFTdUTkNVTJ07ydQ==.HXcBql16eQsd/uam7bZdKvPhAIAotA8kbwx7FBsrRBc="
+                        });
                 });
 
             modelBuilder.Entity("Faces.Database.EF.DbJobFunction", b =>
@@ -104,20 +126,26 @@ namespace Faces.Database.Migrations
                         new
                         {
                             Code = "0001",
-                            HierarchyLevel = (short)10,
-                            Name = "Analyst"
+                            HierarchyLevel = (short)1000,
+                            Name = "RH Manager"
                         },
                         new
                         {
                             Code = "0002",
                             HierarchyLevel = (short)1000,
-                            Name = "CEO"
+                            Name = "Tech Leader"
                         },
                         new
                         {
                             Code = "0003",
                             HierarchyLevel = (short)100,
-                            Name = "Tech Leader"
+                            Name = "Analyst"
+                        },
+                        new
+                        {
+                            Code = "0004",
+                            HierarchyLevel = (short)1,
+                            Name = "Intern"
                         });
                 });
 

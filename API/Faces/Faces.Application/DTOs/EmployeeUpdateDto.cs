@@ -18,6 +18,8 @@ namespace Faces.Application.DTOs
 
         public string DocNumber { get; set; }
 
+        public string Password { get; set; }
+
         public DateTime BirthDate { get; set; }
 
         public string JobFunctionCode { get; set; }
@@ -26,4 +28,5 @@ namespace Faces.Application.DTOs
 
         public List<PhoneDto> Phones { get; set; }
     }
+
 }

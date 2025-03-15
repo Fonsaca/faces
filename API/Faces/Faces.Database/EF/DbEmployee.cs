@@ -35,6 +35,8 @@ namespace Faces.Database.EF
 
         public DateTime? DeletionDate { get; set; }
 
+        public string PasswordHash { get; set; }
+
         internal void SetCreated()
         {
             this.IsDeleted = false;
@@ -70,6 +72,8 @@ namespace Faces.Database.EF
             if (entity.Manager != null)
                 employee.Manager = entity.Manager!.ConvertToDomain();
 
+            employee.SetPasswordHash(entity.PasswordHash);
+
             return employee;
         }
 
@@ -85,8 +89,10 @@ namespace Faces.Database.EF
                 LastName = domainModel.LastName,
                 JobFunctionCode = domainModel.JobFunction.Code,
                 ManagerID = domainModel.Manager?.ID,
-                Phones = domainModel.Phones.Select(phone => phone.ConvertToDbModel()).ToList()
+                Phones = domainModel.Phones.Select(phone => phone.ConvertToDbModel()).ToList(),
+                PasswordHash = domainModel.GetPasswordHash()
             };
+
         }
     }
 

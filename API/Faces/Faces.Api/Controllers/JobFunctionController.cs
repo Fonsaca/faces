@@ -1,12 +1,14 @@
 
 
 using Faces.Application.Services;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Faces.Api.Controllers
 {
     [ApiController]
     [Route("[controller]")]
+    [Authorize]
     public class JobFunctionController : ControllerBase
     {
 

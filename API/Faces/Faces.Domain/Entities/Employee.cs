@@ -1,5 +1,6 @@
 ﻿using Faces.Domain.Util;
 using System.ComponentModel.DataAnnotations;
+using System.Security.Cryptography;
 
 namespace Faces.Domain.Entities
 {
@@ -13,7 +14,7 @@ namespace Faces.Domain.Entities
 
         private int _id;
 
-        [MinLength(1,ErrorMessage = "Employee ID can't be a negative number")]
+        [MinLength(0,ErrorMessage = "Employee ID can't be a negative number")]
         public int ID
         {
             get
@@ -101,6 +102,30 @@ namespace Faces.Domain.Entities
 
 
 
+        private string _passwordHash = string.Empty;
+
+        public string GetPasswordHash() => _passwordHash;
+
+        public void SetPassword(string password)
+        {
+            (bool isStrong, string message) = Hashing.StrongPasswordCheck(password);
+            if (!isStrong)
+                throw new InvalidOperationException(message);
+
+            _passwordHash = Hashing.HashPassword(password);
+        }
+
+        public void SetPasswordHash(string passwordHash)
+        {
+            _passwordHash = passwordHash;
+        }
+
+        public bool HasValidPassword(string password)
+        {
+
+            return !string.IsNullOrEmpty(_passwordHash) && Hashing.VerifyPassword(password, _passwordHash);
+        }
+
 
         public (bool isValid, string message) HasRequiredFields()
         {
@@ -124,7 +149,6 @@ namespace Faces.Domain.Entities
             return (false, $"The following fields are missing: {fieldsFailed}");
         }
 
-
         public (bool isValid, string message) HasManagerOrIsHighestJobFunction()
         {
 
@@ -137,6 +161,7 @@ namespace Faces.Domain.Entities
             return (true, "Manager and Job function is correctly set");
         }
 
+ 
 
         public bool HasGreaterHierarchyJobFunction(Employee employeeToCreate)
         {
@@ -163,5 +188,7 @@ namespace Faces.Domain.Entities
                 throw new MissingFieldException(message);
         }
 
+
+       
     }
 }

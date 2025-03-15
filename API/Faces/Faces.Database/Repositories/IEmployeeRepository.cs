@@ -15,6 +15,8 @@ namespace Faces.Database.Repositories
 
         Employee? GetById(int id);
 
+        Employee? GetByDocument(string document);
+
         void Create(Employee employee);
 
         void Update(Employee employee);
@@ -74,6 +76,7 @@ namespace Faces.Database.Repositories
             var dbUpdateEmployee = employee.ConvertToDbModel();
             dbUpdateEmployee.CreationDate = dbEmployee.CreationDate;
             dbUpdateEmployee.IsDeleted = dbEmployee.IsDeleted;
+            dbUpdateEmployee.PasswordHash = dbEmployee.PasswordHash;
 
             var phones = dbUpdateEmployee.Phones;
 
@@ -122,5 +125,14 @@ namespace Faces.Database.Repositories
             _context.SaveChanges();
         }
 
+        public Employee? GetByDocument(string document)
+        {
+            return _context.Employees
+               .Include(x => x.Phones)
+               .Include(x => x.JobFunction)
+               .Include(x => x.Manager)
+               .FirstOrDefault(x => x.DocNumber == document && !x.IsDeleted)
+               ?.ConvertToDomain();
+        }
     }
 }

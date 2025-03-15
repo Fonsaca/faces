@@ -12,8 +12,8 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace Faces.Database.Migrations
 {
     [DbContext(typeof(FacesDbContext))]
-    [Migration("20250313014256_date")]
-    partial class date
+    [Migration("20250314231329_init")]
+    partial class init
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -40,7 +40,7 @@ namespace Faces.Database.Migrations
                     b.Property<DateTime>("CreationDate")
                         .HasColumnType("timestamp with time zone");
 
-                    b.Property<DateTime>("DeletionDate")
+                    b.Property<DateTime?>("DeletionDate")
                         .HasColumnType("timestamp with time zone");
 
                     b.Property<string>("DocNumber")
@@ -73,7 +73,14 @@ namespace Faces.Database.Migrations
                     b.Property<int?>("ManagerID")
                         .HasColumnType("integer");
 
+                    b.Property<string>("PasswordHash")
+                        .IsRequired()
+                        .HasColumnType("text");
+
                     b.HasKey("ID");
+
+                    b.HasIndex("DocNumber")
+                        .IsUnique();
 
                     b.HasIndex("JobFunctionCode");
 
@@ -104,20 +111,26 @@ namespace Faces.Database.Migrations
                         new
                         {
                             Code = "0001",
-                            HierarchyLevel = (short)10,
-                            Name = "Analyst"
+                            HierarchyLevel = (short)1000,
+                            Name = "RH Manager"
                         },
                         new
                         {
                             Code = "0002",
                             HierarchyLevel = (short)1000,
-                            Name = "CEO"
+                            Name = "Tech Leader"
                         },
                         new
                         {
                             Code = "0003",
                             HierarchyLevel = (short)100,
-                            Name = "Tech Leader"
+                            Name = "Analyst"
+                        },
+                        new
+                        {
+                            Code = "0004",
+                            HierarchyLevel = (short)1,
+                            Name = "Intern"
                         });
                 });
 

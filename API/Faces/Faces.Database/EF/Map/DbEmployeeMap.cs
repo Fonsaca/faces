@@ -9,6 +9,11 @@ namespace Faces.Database.EF.Map
         {
             builder.HasKey(c => c.ID);
 
+
+            builder.Property(u => u.ID)
+                .ValueGeneratedOnAdd();
+
+
             builder.Property(c => c.FirstName)
                 .IsRequired()
                 .HasMaxLength(50);
@@ -24,6 +29,10 @@ namespace Faces.Database.EF.Map
             builder.Property(c => c.DocNumber)
                 .IsRequired()
                 .HasMaxLength(20);
+
+
+            builder.HasIndex(c => c.DocNumber)
+                .IsUnique();
 
             builder.Property(c => c.BirthDate)
                 .IsRequired()

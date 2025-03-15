@@ -20,7 +20,7 @@ namespace Faces.Application.Services
     
     }
 
-    internal class EmployeeService : IEmployeeService 
+    internal class EmployeeService : IEmployeeService
     {
         private readonly IAuthenticatedEmployee _authenticatedEmployee;
 
@@ -42,6 +42,7 @@ namespace Faces.Application.Services
         public void Create(EmployeeUpdateDto employeeDto)
         {
             var employee = _employeeFactory.CreateFrom(employeeDto);
+            employee.SetPassword(employeeDto.Password);
 
             var authEmployeeCreating = _authenticatedEmployee.Employee!;
 
@@ -67,6 +68,6 @@ namespace Faces.Application.Services
 
         public Employee? GetById(int id) => _employeeRepository.GetById(id);
 
-        
+       
     }
 }
