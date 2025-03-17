@@ -111,7 +111,7 @@ docker run --name facesweb -p 80:80 -d facesweb
 
 Web Page: http://localhost/
 
-Web Api: http://localhost:25001/
+Web Api: http://localhost:25001/swagger
 
 Log in with the admin user:
 - Document: 0001
