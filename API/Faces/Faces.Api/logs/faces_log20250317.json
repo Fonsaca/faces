@@ -1,0 +1,74 @@
+2025-03-17 11:02:38.955 -03:00 [INF] Starting up!
+2025-03-17 11:02:39.142 -03:00 [INF] User profile is available. Using 'C:\Users\gabri\AppData\Local\ASP.NET\DataProtection-Keys' as key repository and Windows DPAPI to encrypt keys at rest.
+2025-03-17 11:02:39.686 -03:00 [INF] Now listening on: http://localhost:25001
+2025-03-17 11:02:40.301 -03:00 [INF] Application started. Press Ctrl+C to shut down.
+2025-03-17 11:02:40.304 -03:00 [INF] Hosting environment: Development
+2025-03-17 11:02:40.306 -03:00 [INF] Content root path: D:\Git\faces\API\Faces\Faces.Api
+2025-03-17 11:02:40.568 -03:00 [INF] Request starting HTTP/1.1 GET http://localhost:25001/swagger/index.html - null null
+2025-03-17 11:02:40.922 -03:00 [INF] Request finished HTTP/1.1 GET http://localhost:25001/swagger/index.html - 200 null text/html;charset=utf-8 372.07ms
+2025-03-17 11:02:40.927 -03:00 [INF] Request starting HTTP/1.1 GET http://localhost:25001/_vs/browserLink - null null
+2025-03-17 11:02:40.934 -03:00 [INF] Request starting HTTP/1.1 GET http://localhost:25001/_framework/aspnetcore-browser-refresh.js - null null
+2025-03-17 11:02:40.946 -03:00 [INF] Request finished HTTP/1.1 GET http://localhost:25001/_framework/aspnetcore-browser-refresh.js - 200 13754 application/javascript; charset=utf-8 12.1429ms
+2025-03-17 11:02:40.996 -03:00 [INF] Request finished HTTP/1.1 GET http://localhost:25001/_vs/browserLink - 200 null text/javascript; charset=UTF-8 69.1328ms
+2025-03-17 11:02:41.056 -03:00 [INF] Request starting HTTP/1.1 GET http://localhost:25001/swagger/v1/swagger.json - null null
+2025-03-17 11:02:41.229 -03:00 [INF] Request finished HTTP/1.1 GET http://localhost:25001/swagger/v1/swagger.json - 200 null application/json;charset=utf-8 172.5682ms
+2025-03-17 11:03:51.381 -03:00 [INF] Request starting HTTP/1.1 OPTIONS http://localhost:25001/api/jobfunction - null null
+2025-03-17 11:03:51.394 -03:00 [INF] CORS policy execution successful.
+2025-03-17 11:03:51.399 -03:00 [INF] Request finished HTTP/1.1 OPTIONS http://localhost:25001/api/jobfunction - 204 null null 17.2212ms
+2025-03-17 11:03:51.410 -03:00 [INF] Request starting HTTP/1.1 GET http://localhost:25001/api/jobfunction - application/json null
+2025-03-17 11:03:51.414 -03:00 [INF] CORS policy execution successful.
+2025-03-17 11:03:51.419 -03:00 [WRN] Failed to determine the https port for redirect.
+2025-03-17 11:03:51.667 -03:00 [INF] Executing endpoint 'Faces.Api.Controllers.JobFunctionController.Get (Faces.Api)'
+2025-03-17 11:03:51.706 -03:00 [INF] Route matched with {action = "Get", controller = "JobFunction"}. Executing controller action with signature Microsoft.AspNetCore.Mvc.IActionResult Get() on controller Faces.Api.Controllers.JobFunctionController (Faces.Api).
+2025-03-17 11:03:53.600 -03:00 [INF] Executed DbCommand (28ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT j."Code", j."HierarchyLevel", j."Name"
+FROM "JobFunctions" AS j
+2025-03-17 11:03:53.749 -03:00 [INF] Executed action Faces.Api.Controllers.JobFunctionController.Get (Faces.Api) in 2035.7329ms
+2025-03-17 11:03:53.752 -03:00 [INF] Executed endpoint 'Faces.Api.Controllers.JobFunctionController.Get (Faces.Api)'
+2025-03-17 11:03:53.763 -03:00 [INF] Request finished HTTP/1.1 GET http://localhost:25001/api/jobfunction - 200 null application/json 2353.3646ms
+2025-03-17 11:03:57.355 -03:00 [INF] Request starting HTTP/1.1 OPTIONS http://localhost:25001/api/employee - null null
+2025-03-17 11:03:57.358 -03:00 [INF] CORS policy execution successful.
+2025-03-17 11:03:57.359 -03:00 [INF] Request finished HTTP/1.1 OPTIONS http://localhost:25001/api/employee - 204 null null 4.3296ms
+2025-03-17 11:03:57.363 -03:00 [INF] Request starting HTTP/1.1 PUT http://localhost:25001/api/employee - application/json 265
+2025-03-17 11:03:57.368 -03:00 [INF] CORS policy execution successful.
+2025-03-17 11:03:57.374 -03:00 [INF] Executing endpoint 'Faces.Api.Controllers.EmployeeController.Update (Faces.Api)'
+2025-03-17 11:03:57.387 -03:00 [INF] Route matched with {action = "Update", controller = "Employee"}. Executing controller action with signature Microsoft.AspNetCore.Mvc.IActionResult Update(Faces.Application.DTOs.EmployeeUpdateDto) on controller Faces.Api.Controllers.EmployeeController (Faces.Api).
+2025-03-17 11:03:57.659 -03:00 [INF] Executed DbCommand (14ms) [Parameters=[@__document_0='?'], CommandType='"Text"', CommandTimeout='30']
+SELECT s."ID", s."BirthDate", s."CreationDate", s."DeletionDate", s."DocNumber", s."Email", s."FirstName", s."IsDeleted", s."JobFunctionCode", s."LastName", s."ManagerID", s."PasswordHash", s."Code", s."ID0", s."Code0", p."ID", p."EmployeeID", p."Label", p."Number", s."HierarchyLevel", s."Name", s."BirthDate0", s."CreationDate0", s."DeletionDate0", s."DocNumber0", s."Email0", s."FirstName0", s."IsDeleted0", s."JobFunctionCode0", s."LastName0", s."ManagerID0", s."PasswordHash0", s."HierarchyLevel0", s."Name0"
+FROM (
+    SELECT e."ID", e."BirthDate", e."CreationDate", e."DeletionDate", e."DocNumber", e."Email", e."FirstName", e."IsDeleted", e."JobFunctionCode", e."LastName", e."ManagerID", e."PasswordHash", j."Code", j."HierarchyLevel", j."Name", e0."ID" AS "ID0", e0."BirthDate" AS "BirthDate0", e0."CreationDate" AS "CreationDate0", e0."DeletionDate" AS "DeletionDate0", e0."DocNumber" AS "DocNumber0", e0."Email" AS "Email0", e0."FirstName" AS "FirstName0", e0."IsDeleted" AS "IsDeleted0", e0."JobFunctionCode" AS "JobFunctionCode0", e0."LastName" AS "LastName0", e0."ManagerID" AS "ManagerID0", e0."PasswordHash" AS "PasswordHash0", j0."Code" AS "Code0", j0."HierarchyLevel" AS "HierarchyLevel0", j0."Name" AS "Name0"
+    FROM "Employees" AS e
+    INNER JOIN "JobFunctions" AS j ON e."JobFunctionCode" = j."Code"
+    LEFT JOIN "Employees" AS e0 ON e."ManagerID" = e0."ID"
+    LEFT JOIN "JobFunctions" AS j0 ON e0."JobFunctionCode" = j0."Code"
+    WHERE e."DocNumber" = @__document_0 AND NOT (e."IsDeleted")
+    LIMIT 1
+) AS s
+LEFT JOIN "Phones" AS p ON s."ID" = p."EmployeeID"
+ORDER BY s."ID", s."Code", s."ID0", s."Code0"
+2025-03-17 11:03:57.845 -03:00 [INF] Executed DbCommand (3ms) [Parameters=[@__code_0='?'], CommandType='"Text"', CommandTimeout='30']
+SELECT j."Code", j."HierarchyLevel", j."Name"
+FROM "JobFunctions" AS j
+WHERE j."Code" = @__code_0
+LIMIT 1
+2025-03-17 11:03:57.893 -03:00 [INF] Executed DbCommand (4ms) [Parameters=[@__id_0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT s."ID", s."BirthDate", s."CreationDate", s."DeletionDate", s."DocNumber", s."Email", s."FirstName", s."IsDeleted", s."JobFunctionCode", s."LastName", s."ManagerID", s."PasswordHash", s."Code", s."ID0", s."Code0", p."ID", p."EmployeeID", p."Label", p."Number", s."HierarchyLevel", s."Name", s."BirthDate0", s."CreationDate0", s."DeletionDate0", s."DocNumber0", s."Email0", s."FirstName0", s."IsDeleted0", s."JobFunctionCode0", s."LastName0", s."ManagerID0", s."PasswordHash0", s."HierarchyLevel0", s."Name0"
+FROM (
+    SELECT e."ID", e."BirthDate", e."CreationDate", e."DeletionDate", e."DocNumber", e."Email", e."FirstName", e."IsDeleted", e."JobFunctionCode", e."LastName", e."ManagerID", e."PasswordHash", j."Code", j."HierarchyLevel", j."Name", e0."ID" AS "ID0", e0."BirthDate" AS "BirthDate0", e0."CreationDate" AS "CreationDate0", e0."DeletionDate" AS "DeletionDate0", e0."DocNumber" AS "DocNumber0", e0."Email" AS "Email0", e0."FirstName" AS "FirstName0", e0."IsDeleted" AS "IsDeleted0", e0."JobFunctionCode" AS "JobFunctionCode0", e0."LastName" AS "LastName0", e0."ManagerID" AS "ManagerID0", e0."PasswordHash" AS "PasswordHash0", j0."Code" AS "Code0", j0."HierarchyLevel" AS "HierarchyLevel0", j0."Name" AS "Name0"
+    FROM "Employees" AS e
+    INNER JOIN "JobFunctions" AS j ON e."JobFunctionCode" = j."Code"
+    LEFT JOIN "Employees" AS e0 ON e."ManagerID" = e0."ID"
+    LEFT JOIN "JobFunctions" AS j0 ON e0."JobFunctionCode" = j0."Code"
+    WHERE e."ID" = @__id_0 AND NOT (e."IsDeleted")
+    LIMIT 1
+) AS s
+LEFT JOIN "Phones" AS p ON s."ID" = p."EmployeeID"
+ORDER BY s."ID", s."Code", s."ID0", s."Code0"
+2025-03-17 11:03:57.991 -03:00 [ERR] Failed to update the employee
+System.MissingFieldException: The highest job function can not have a Manager
+   at Faces.Domain.Entities.Employee.ValidateToCreateOrUpdate(Employee authEmployeeCreating) in D:\Git\faces\API\Faces\Faces.Domain\Entities\Employee.cs:line 188
+   at Faces.Application.Services.EmployeeService.Update(EmployeeUpdateDto employeeDto) in D:\Git\faces\API\Faces\Faces.Application\Services\IEmployeeService.cs:line 63
+   at Faces.Api.Controllers.EmployeeController.Update(EmployeeUpdateDto employeeUpdate) in D:\Git\faces\API\Faces\Faces.Api\Controllers\EmployeeController.cs:line 60
+2025-03-17 11:03:58.051 -03:00 [INF] Executed action Faces.Api.Controllers.EmployeeController.Update (Faces.Api) in 660.3586ms
+2025-03-17 11:03:58.053 -03:00 [INF] Executed endpoint 'Faces.Api.Controllers.EmployeeController.Update (Faces.Api)'
+2025-03-17 11:03:58.055 -03:00 [INF] Request finished HTTP/1.1 PUT http://localhost:25001/api/employee - 400 null application/json 691.4699ms

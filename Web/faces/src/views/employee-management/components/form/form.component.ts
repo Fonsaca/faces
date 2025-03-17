@@ -60,6 +60,10 @@ export class FormComponent implements OnInit{
   get phonesArray(): FormArray{ 
     return (this.form.controls['phones'] as FormArray)
   }
+
+  get managers(): Employee[] {
+    return this.employees.filter(e => e.id != this.employee?.id)
+  }
   
   async ngOnInit(): Promise<void> {
     await this.requestJobFunctions();

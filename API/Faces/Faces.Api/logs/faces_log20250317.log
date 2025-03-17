@@ -1,0 +1,599 @@
+2025-03-17 11:05:24.023 -03:00 [INF] Starting up!
+2025-03-17 11:05:24.283 -03:00 [INF] User profile is available. Using 'C:\Users\gabri\AppData\Local\ASP.NET\DataProtection-Keys' as key repository and Windows DPAPI to encrypt keys at rest.
+2025-03-17 11:05:24.664 -03:00 [INF] Now listening on: http://localhost:25001
+2025-03-17 11:05:24.853 -03:00 [INF] Application started. Press Ctrl+C to shut down.
+2025-03-17 11:05:24.856 -03:00 [INF] Hosting environment: Development
+2025-03-17 11:05:24.857 -03:00 [INF] Content root path: D:\Git\faces\API\Faces\Faces.Api
+2025-03-17 11:05:25.670 -03:00 [INF] Request starting HTTP/1.1 GET http://localhost:25001/swagger/index.html - null null
+2025-03-17 11:05:26.009 -03:00 [INF] Request finished HTTP/1.1 GET http://localhost:25001/swagger/index.html - 200 null text/html;charset=utf-8 356.2588ms
+2025-03-17 11:05:26.009 -03:00 [INF] Request starting HTTP/1.1 GET http://localhost:25001/_vs/browserLink - null null
+2025-03-17 11:05:26.016 -03:00 [INF] Request starting HTTP/1.1 GET http://localhost:25001/_framework/aspnetcore-browser-refresh.js - null null
+2025-03-17 11:05:26.024 -03:00 [INF] Request finished HTTP/1.1 GET http://localhost:25001/_framework/aspnetcore-browser-refresh.js - 200 13754 application/javascript; charset=utf-8 7.3611ms
+2025-03-17 11:05:26.059 -03:00 [INF] Request finished HTTP/1.1 GET http://localhost:25001/_vs/browserLink - 200 null text/javascript; charset=UTF-8 50.3403ms
+2025-03-17 11:05:26.113 -03:00 [INF] Request starting HTTP/1.1 GET http://localhost:25001/swagger/v1/swagger.json - null null
+2025-03-17 11:05:26.251 -03:00 [INF] Request finished HTTP/1.1 GET http://localhost:25001/swagger/v1/swagger.json - 200 null application/json;charset=utf-8 138.4517ms
+2025-03-17 11:07:37.111 -03:00 [INF] Request starting HTTP/1.1 OPTIONS http://localhost:25001/api/employee - null null
+2025-03-17 11:07:37.126 -03:00 [INF] CORS policy execution successful.
+2025-03-17 11:07:37.131 -03:00 [INF] Request finished HTTP/1.1 OPTIONS http://localhost:25001/api/employee - 204 null null 22.348ms
+2025-03-17 11:07:37.140 -03:00 [INF] Request starting HTTP/1.1 PUT http://localhost:25001/api/employee - application/json 265
+2025-03-17 11:07:37.144 -03:00 [INF] CORS policy execution successful.
+2025-03-17 11:07:37.147 -03:00 [WRN] Failed to determine the https port for redirect.
+2025-03-17 11:07:37.335 -03:00 [INF] Executing endpoint 'Faces.Api.Controllers.EmployeeController.Update (Faces.Api)'
+2025-03-17 11:07:37.370 -03:00 [INF] Route matched with {action = "Update", controller = "Employee"}. Executing controller action with signature Microsoft.AspNetCore.Mvc.IActionResult Update(Faces.Application.DTOs.EmployeeUpdateDto) on controller Faces.Api.Controllers.EmployeeController (Faces.Api).
+2025-03-17 11:07:39.319 -03:00 [INF] Executed DbCommand (76ms) [Parameters=[@__document_0='?'], CommandType='"Text"', CommandTimeout='30']
+SELECT s."ID", s."BirthDate", s."CreationDate", s."DeletionDate", s."DocNumber", s."Email", s."FirstName", s."IsDeleted", s."JobFunctionCode", s."LastName", s."ManagerID", s."PasswordHash", s."Code", s."ID0", s."Code0", p."ID", p."EmployeeID", p."Label", p."Number", s."HierarchyLevel", s."Name", s."BirthDate0", s."CreationDate0", s."DeletionDate0", s."DocNumber0", s."Email0", s."FirstName0", s."IsDeleted0", s."JobFunctionCode0", s."LastName0", s."ManagerID0", s."PasswordHash0", s."HierarchyLevel0", s."Name0"
+FROM (
+    SELECT e."ID", e."BirthDate", e."CreationDate", e."DeletionDate", e."DocNumber", e."Email", e."FirstName", e."IsDeleted", e."JobFunctionCode", e."LastName", e."ManagerID", e."PasswordHash", j."Code", j."HierarchyLevel", j."Name", e0."ID" AS "ID0", e0."BirthDate" AS "BirthDate0", e0."CreationDate" AS "CreationDate0", e0."DeletionDate" AS "DeletionDate0", e0."DocNumber" AS "DocNumber0", e0."Email" AS "Email0", e0."FirstName" AS "FirstName0", e0."IsDeleted" AS "IsDeleted0", e0."JobFunctionCode" AS "JobFunctionCode0", e0."LastName" AS "LastName0", e0."ManagerID" AS "ManagerID0", e0."PasswordHash" AS "PasswordHash0", j0."Code" AS "Code0", j0."HierarchyLevel" AS "HierarchyLevel0", j0."Name" AS "Name0"
+    FROM "Employees" AS e
+    INNER JOIN "JobFunctions" AS j ON e."JobFunctionCode" = j."Code"
+    LEFT JOIN "Employees" AS e0 ON e."ManagerID" = e0."ID"
+    LEFT JOIN "JobFunctions" AS j0 ON e0."JobFunctionCode" = j0."Code"
+    WHERE e."DocNumber" = @__document_0 AND NOT (e."IsDeleted")
+    LIMIT 1
+) AS s
+LEFT JOIN "Phones" AS p ON s."ID" = p."EmployeeID"
+ORDER BY s."ID", s."Code", s."ID0", s."Code0"
+2025-03-17 11:07:39.574 -03:00 [INF] Executed DbCommand (3ms) [Parameters=[@__code_0='?'], CommandType='"Text"', CommandTimeout='30']
+SELECT j."Code", j."HierarchyLevel", j."Name"
+FROM "JobFunctions" AS j
+WHERE j."Code" = @__code_0
+LIMIT 1
+2025-03-17 11:07:39.638 -03:00 [INF] Executed DbCommand (5ms) [Parameters=[@__id_0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT s."ID", s."BirthDate", s."CreationDate", s."DeletionDate", s."DocNumber", s."Email", s."FirstName", s."IsDeleted", s."JobFunctionCode", s."LastName", s."ManagerID", s."PasswordHash", s."Code", s."ID0", s."Code0", p."ID", p."EmployeeID", p."Label", p."Number", s."HierarchyLevel", s."Name", s."BirthDate0", s."CreationDate0", s."DeletionDate0", s."DocNumber0", s."Email0", s."FirstName0", s."IsDeleted0", s."JobFunctionCode0", s."LastName0", s."ManagerID0", s."PasswordHash0", s."HierarchyLevel0", s."Name0"
+FROM (
+    SELECT e."ID", e."BirthDate", e."CreationDate", e."DeletionDate", e."DocNumber", e."Email", e."FirstName", e."IsDeleted", e."JobFunctionCode", e."LastName", e."ManagerID", e."PasswordHash", j."Code", j."HierarchyLevel", j."Name", e0."ID" AS "ID0", e0."BirthDate" AS "BirthDate0", e0."CreationDate" AS "CreationDate0", e0."DeletionDate" AS "DeletionDate0", e0."DocNumber" AS "DocNumber0", e0."Email" AS "Email0", e0."FirstName" AS "FirstName0", e0."IsDeleted" AS "IsDeleted0", e0."JobFunctionCode" AS "JobFunctionCode0", e0."LastName" AS "LastName0", e0."ManagerID" AS "ManagerID0", e0."PasswordHash" AS "PasswordHash0", j0."Code" AS "Code0", j0."HierarchyLevel" AS "HierarchyLevel0", j0."Name" AS "Name0"
+    FROM "Employees" AS e
+    INNER JOIN "JobFunctions" AS j ON e."JobFunctionCode" = j."Code"
+    LEFT JOIN "Employees" AS e0 ON e."ManagerID" = e0."ID"
+    LEFT JOIN "JobFunctions" AS j0 ON e0."JobFunctionCode" = j0."Code"
+    WHERE e."ID" = @__id_0 AND NOT (e."IsDeleted")
+    LIMIT 1
+) AS s
+LEFT JOIN "Phones" AS p ON s."ID" = p."EmployeeID"
+ORDER BY s."ID", s."Code", s."ID0", s."Code0"
+2025-03-17 11:07:39.747 -03:00 [ERR] Failed to update the employee
+System.MissingFieldException: The highest job function can not have a Manager
+   at Faces.Domain.Entities.Employee.ValidateToCreateOrUpdate(Employee authEmployeeCreating) in D:\Git\faces\API\Faces\Faces.Domain\Entities\Employee.cs:line 188
+   at Faces.Application.Services.EmployeeService.Update(EmployeeUpdateDto employeeDto) in D:\Git\faces\API\Faces\Faces.Application\Services\IEmployeeService.cs:line 63
+   at Faces.Api.Controllers.EmployeeController.Update(EmployeeUpdateDto employeeUpdate) in D:\Git\faces\API\Faces\Faces.Api\Controllers\EmployeeController.cs:line 60
+2025-03-17 11:07:39.793 -03:00 [INF] Executed action Faces.Api.Controllers.EmployeeController.Update (Faces.Api) in 2413.451ms
+2025-03-17 11:07:39.795 -03:00 [INF] Executed endpoint 'Faces.Api.Controllers.EmployeeController.Update (Faces.Api)'
+2025-03-17 11:07:39.808 -03:00 [INF] Request finished HTTP/1.1 PUT http://localhost:25001/api/employee - 400 null application/json 2667.3598ms
+2025-03-17 11:07:44.528 -03:00 [INF] Request starting HTTP/1.1 OPTIONS http://localhost:25001/api/employee - null null
+2025-03-17 11:07:44.532 -03:00 [INF] CORS policy execution successful.
+2025-03-17 11:07:44.534 -03:00 [INF] Request finished HTTP/1.1 OPTIONS http://localhost:25001/api/employee - 204 null null 5.5733ms
+2025-03-17 11:07:44.537 -03:00 [INF] Request starting HTTP/1.1 PUT http://localhost:25001/api/employee - application/json 265
+2025-03-17 11:07:44.540 -03:00 [INF] CORS policy execution successful.
+2025-03-17 11:07:44.545 -03:00 [INF] Executing endpoint 'Faces.Api.Controllers.EmployeeController.Update (Faces.Api)'
+2025-03-17 11:07:44.547 -03:00 [INF] Route matched with {action = "Update", controller = "Employee"}. Executing controller action with signature Microsoft.AspNetCore.Mvc.IActionResult Update(Faces.Application.DTOs.EmployeeUpdateDto) on controller Faces.Api.Controllers.EmployeeController (Faces.Api).
+2025-03-17 11:07:44.578 -03:00 [INF] Executed DbCommand (4ms) [Parameters=[@__document_0='?'], CommandType='"Text"', CommandTimeout='30']
+SELECT s."ID", s."BirthDate", s."CreationDate", s."DeletionDate", s."DocNumber", s."Email", s."FirstName", s."IsDeleted", s."JobFunctionCode", s."LastName", s."ManagerID", s."PasswordHash", s."Code", s."ID0", s."Code0", p."ID", p."EmployeeID", p."Label", p."Number", s."HierarchyLevel", s."Name", s."BirthDate0", s."CreationDate0", s."DeletionDate0", s."DocNumber0", s."Email0", s."FirstName0", s."IsDeleted0", s."JobFunctionCode0", s."LastName0", s."ManagerID0", s."PasswordHash0", s."HierarchyLevel0", s."Name0"
+FROM (
+    SELECT e."ID", e."BirthDate", e."CreationDate", e."DeletionDate", e."DocNumber", e."Email", e."FirstName", e."IsDeleted", e."JobFunctionCode", e."LastName", e."ManagerID", e."PasswordHash", j."Code", j."HierarchyLevel", j."Name", e0."ID" AS "ID0", e0."BirthDate" AS "BirthDate0", e0."CreationDate" AS "CreationDate0", e0."DeletionDate" AS "DeletionDate0", e0."DocNumber" AS "DocNumber0", e0."Email" AS "Email0", e0."FirstName" AS "FirstName0", e0."IsDeleted" AS "IsDeleted0", e0."JobFunctionCode" AS "JobFunctionCode0", e0."LastName" AS "LastName0", e0."ManagerID" AS "ManagerID0", e0."PasswordHash" AS "PasswordHash0", j0."Code" AS "Code0", j0."HierarchyLevel" AS "HierarchyLevel0", j0."Name" AS "Name0"
+    FROM "Employees" AS e
+    INNER JOIN "JobFunctions" AS j ON e."JobFunctionCode" = j."Code"
+    LEFT JOIN "Employees" AS e0 ON e."ManagerID" = e0."ID"
+    LEFT JOIN "JobFunctions" AS j0 ON e0."JobFunctionCode" = j0."Code"
+    WHERE e."DocNumber" = @__document_0 AND NOT (e."IsDeleted")
+    LIMIT 1
+) AS s
+LEFT JOIN "Phones" AS p ON s."ID" = p."EmployeeID"
+ORDER BY s."ID", s."Code", s."ID0", s."Code0"
+2025-03-17 11:07:44.590 -03:00 [INF] Executed DbCommand (2ms) [Parameters=[@__code_0='?'], CommandType='"Text"', CommandTimeout='30']
+SELECT j."Code", j."HierarchyLevel", j."Name"
+FROM "JobFunctions" AS j
+WHERE j."Code" = @__code_0
+LIMIT 1
+2025-03-17 11:07:44.598 -03:00 [INF] Executed DbCommand (4ms) [Parameters=[@__id_0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT s."ID", s."BirthDate", s."CreationDate", s."DeletionDate", s."DocNumber", s."Email", s."FirstName", s."IsDeleted", s."JobFunctionCode", s."LastName", s."ManagerID", s."PasswordHash", s."Code", s."ID0", s."Code0", p."ID", p."EmployeeID", p."Label", p."Number", s."HierarchyLevel", s."Name", s."BirthDate0", s."CreationDate0", s."DeletionDate0", s."DocNumber0", s."Email0", s."FirstName0", s."IsDeleted0", s."JobFunctionCode0", s."LastName0", s."ManagerID0", s."PasswordHash0", s."HierarchyLevel0", s."Name0"
+FROM (
+    SELECT e."ID", e."BirthDate", e."CreationDate", e."DeletionDate", e."DocNumber", e."Email", e."FirstName", e."IsDeleted", e."JobFunctionCode", e."LastName", e."ManagerID", e."PasswordHash", j."Code", j."HierarchyLevel", j."Name", e0."ID" AS "ID0", e0."BirthDate" AS "BirthDate0", e0."CreationDate" AS "CreationDate0", e0."DeletionDate" AS "DeletionDate0", e0."DocNumber" AS "DocNumber0", e0."Email" AS "Email0", e0."FirstName" AS "FirstName0", e0."IsDeleted" AS "IsDeleted0", e0."JobFunctionCode" AS "JobFunctionCode0", e0."LastName" AS "LastName0", e0."ManagerID" AS "ManagerID0", e0."PasswordHash" AS "PasswordHash0", j0."Code" AS "Code0", j0."HierarchyLevel" AS "HierarchyLevel0", j0."Name" AS "Name0"
+    FROM "Employees" AS e
+    INNER JOIN "JobFunctions" AS j ON e."JobFunctionCode" = j."Code"
+    LEFT JOIN "Employees" AS e0 ON e."ManagerID" = e0."ID"
+    LEFT JOIN "JobFunctions" AS j0 ON e0."JobFunctionCode" = j0."Code"
+    WHERE e."ID" = @__id_0 AND NOT (e."IsDeleted")
+    LIMIT 1
+) AS s
+LEFT JOIN "Phones" AS p ON s."ID" = p."EmployeeID"
+ORDER BY s."ID", s."Code", s."ID0", s."Code0"
+2025-03-17 11:07:44.621 -03:00 [INF] Executed DbCommand (3ms) [Parameters=[@__document_0='?', @__exceptEmployeeId_1='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT EXISTS (
+    SELECT 1
+    FROM "Employees" AS e
+    WHERE e."DocNumber" = @__document_0 AND e."ID" <> @__exceptEmployeeId_1)
+2025-03-17 11:07:44.649 -03:00 [INF] Executed DbCommand (5ms) [Parameters=[@__employee_ID_0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT e0."ID", e0."BirthDate", e0."CreationDate", e0."DeletionDate", e0."DocNumber", e0."Email", e0."FirstName", e0."IsDeleted", e0."JobFunctionCode", e0."LastName", e0."ManagerID", e0."PasswordHash", p."ID", p."EmployeeID", p."Label", p."Number"
+FROM (
+    SELECT e."ID", e."BirthDate", e."CreationDate", e."DeletionDate", e."DocNumber", e."Email", e."FirstName", e."IsDeleted", e."JobFunctionCode", e."LastName", e."ManagerID", e."PasswordHash"
+    FROM "Employees" AS e
+    WHERE e."ID" = @__employee_ID_0
+    LIMIT 1
+) AS e0
+LEFT JOIN "Phones" AS p ON e0."ID" = p."EmployeeID"
+ORDER BY e0."ID"
+2025-03-17 11:07:44.861 -03:00 [INF] Executed DbCommand (13ms) [Parameters=[@p11='?' (DbType = Int32), @p0='?', @p1='?' (DbType = DateTime), @p2='?' (DbType = DateTime), @p3='?', @p4='?', @p5='?', @p6='?' (DbType = Boolean), @p7='?', @p8='?', @p9='?' (DbType = Int32), @p10='?'], CommandType='"Text"', CommandTimeout='30']
+UPDATE "Employees" SET "BirthDate" = @p0, "CreationDate" = @p1, "DeletionDate" = @p2, "DocNumber" = @p3, "Email" = @p4, "FirstName" = @p5, "IsDeleted" = @p6, "JobFunctionCode" = @p7, "LastName" = @p8, "ManagerID" = @p9, "PasswordHash" = @p10
+WHERE "ID" = @p11;
+2025-03-17 11:07:44.873 -03:00 [INF] Executed action Faces.Api.Controllers.EmployeeController.Update (Faces.Api) in 322.8828ms
+2025-03-17 11:07:44.876 -03:00 [INF] Executed endpoint 'Faces.Api.Controllers.EmployeeController.Update (Faces.Api)'
+2025-03-17 11:07:44.878 -03:00 [INF] Request finished HTTP/1.1 PUT http://localhost:25001/api/employee - 200 null application/json 340.4609ms
+2025-03-17 11:07:44.884 -03:00 [INF] Request starting HTTP/1.1 GET http://localhost:25001/api/employee - application/json null
+2025-03-17 11:07:44.888 -03:00 [INF] CORS policy execution successful.
+2025-03-17 11:07:44.895 -03:00 [INF] Executing endpoint 'Faces.Api.Controllers.EmployeeController.Get (Faces.Api)'
+2025-03-17 11:07:44.900 -03:00 [INF] Route matched with {action = "Get", controller = "Employee"}. Executing controller action with signature Microsoft.AspNetCore.Mvc.IActionResult Get() on controller Faces.Api.Controllers.EmployeeController (Faces.Api).
+2025-03-17 11:07:44.995 -03:00 [INF] Executed DbCommand (3ms) [Parameters=[@__document_0='?'], CommandType='"Text"', CommandTimeout='30']
+SELECT s."ID", s."BirthDate", s."CreationDate", s."DeletionDate", s."DocNumber", s."Email", s."FirstName", s."IsDeleted", s."JobFunctionCode", s."LastName", s."ManagerID", s."PasswordHash", s."Code", s."ID0", s."Code0", p."ID", p."EmployeeID", p."Label", p."Number", s."HierarchyLevel", s."Name", s."BirthDate0", s."CreationDate0", s."DeletionDate0", s."DocNumber0", s."Email0", s."FirstName0", s."IsDeleted0", s."JobFunctionCode0", s."LastName0", s."ManagerID0", s."PasswordHash0", s."HierarchyLevel0", s."Name0"
+FROM (
+    SELECT e."ID", e."BirthDate", e."CreationDate", e."DeletionDate", e."DocNumber", e."Email", e."FirstName", e."IsDeleted", e."JobFunctionCode", e."LastName", e."ManagerID", e."PasswordHash", j."Code", j."HierarchyLevel", j."Name", e0."ID" AS "ID0", e0."BirthDate" AS "BirthDate0", e0."CreationDate" AS "CreationDate0", e0."DeletionDate" AS "DeletionDate0", e0."DocNumber" AS "DocNumber0", e0."Email" AS "Email0", e0."FirstName" AS "FirstName0", e0."IsDeleted" AS "IsDeleted0", e0."JobFunctionCode" AS "JobFunctionCode0", e0."LastName" AS "LastName0", e0."ManagerID" AS "ManagerID0", e0."PasswordHash" AS "PasswordHash0", j0."Code" AS "Code0", j0."HierarchyLevel" AS "HierarchyLevel0", j0."Name" AS "Name0"
+    FROM "Employees" AS e
+    INNER JOIN "JobFunctions" AS j ON e."JobFunctionCode" = j."Code"
+    LEFT JOIN "Employees" AS e0 ON e."ManagerID" = e0."ID"
+    LEFT JOIN "JobFunctions" AS j0 ON e0."JobFunctionCode" = j0."Code"
+    WHERE e."DocNumber" = @__document_0 AND NOT (e."IsDeleted")
+    LIMIT 1
+) AS s
+LEFT JOIN "Phones" AS p ON s."ID" = p."EmployeeID"
+ORDER BY s."ID", s."Code", s."ID0", s."Code0"
+2025-03-17 11:07:45.044 -03:00 [INF] Executed DbCommand (4ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT e."ID", e."BirthDate", e."CreationDate", e."DeletionDate", e."DocNumber", e."Email", e."FirstName", e."IsDeleted", e."JobFunctionCode", e."LastName", e."ManagerID", e."PasswordHash", j."Code", e0."ID", j0."Code", p."ID", p."EmployeeID", p."Label", p."Number", j."HierarchyLevel", j."Name", e0."BirthDate", e0."CreationDate", e0."DeletionDate", e0."DocNumber", e0."Email", e0."FirstName", e0."IsDeleted", e0."JobFunctionCode", e0."LastName", e0."ManagerID", e0."PasswordHash", j0."HierarchyLevel", j0."Name"
+FROM "Employees" AS e
+INNER JOIN "JobFunctions" AS j ON e."JobFunctionCode" = j."Code"
+LEFT JOIN "Employees" AS e0 ON e."ManagerID" = e0."ID"
+LEFT JOIN "JobFunctions" AS j0 ON e0."JobFunctionCode" = j0."Code"
+LEFT JOIN "Phones" AS p ON e."ID" = p."EmployeeID"
+WHERE NOT (e."IsDeleted")
+ORDER BY e."ID", j."Code", e0."ID", j0."Code"
+2025-03-17 11:07:45.076 -03:00 [INF] Executed action Faces.Api.Controllers.EmployeeController.Get (Faces.Api) in 172.6012ms
+2025-03-17 11:07:45.078 -03:00 [INF] Executed endpoint 'Faces.Api.Controllers.EmployeeController.Get (Faces.Api)'
+2025-03-17 11:07:45.081 -03:00 [INF] Request finished HTTP/1.1 GET http://localhost:25001/api/employee - 200 null application/json 196.5725ms
+2025-03-17 11:09:34.915 -03:00 [INF] Starting up!
+2025-03-17 11:09:35.037 -03:00 [INF] User profile is available. Using 'C:\Users\gabri\AppData\Local\ASP.NET\DataProtection-Keys' as key repository and Windows DPAPI to encrypt keys at rest.
+2025-03-17 11:09:35.310 -03:00 [INF] Now listening on: http://localhost:25001
+2025-03-17 11:09:35.379 -03:00 [INF] Request starting HTTP/1.1 OPTIONS http://localhost:25001/api/jobfunction - null null
+2025-03-17 11:09:35.447 -03:00 [INF] CORS policy execution successful.
+2025-03-17 11:09:35.487 -03:00 [INF] Request finished HTTP/1.1 OPTIONS http://localhost:25001/api/jobfunction - 204 null null 124.1759ms
+2025-03-17 11:09:35.499 -03:00 [INF] Request starting HTTP/1.1 GET http://localhost:25001/api/jobfunction - application/json null
+2025-03-17 11:09:35.507 -03:00 [INF] CORS policy execution successful.
+2025-03-17 11:09:35.533 -03:00 [WRN] Failed to determine the https port for redirect.
+2025-03-17 11:09:35.535 -03:00 [INF] Application started. Press Ctrl+C to shut down.
+2025-03-17 11:09:35.537 -03:00 [INF] Hosting environment: Development
+2025-03-17 11:09:35.538 -03:00 [INF] Content root path: D:\Git\faces\API\Faces\Faces.Api
+2025-03-17 11:09:35.770 -03:00 [INF] Executing endpoint 'Faces.Api.Controllers.JobFunctionController.Get (Faces.Api)'
+2025-03-17 11:09:35.801 -03:00 [INF] Route matched with {action = "Get", controller = "JobFunction"}. Executing controller action with signature Microsoft.AspNetCore.Mvc.IActionResult Get() on controller Faces.Api.Controllers.JobFunctionController (Faces.Api).
+2025-03-17 11:09:36.570 -03:00 [INF] Request starting HTTP/1.1 GET http://localhost:25001/swagger/index.html - null null
+2025-03-17 11:09:36.880 -03:00 [INF] Request finished HTTP/1.1 GET http://localhost:25001/swagger/index.html - 200 null text/html;charset=utf-8 310.4312ms
+2025-03-17 11:09:38.256 -03:00 [INF] Executed DbCommand (25ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT j."Code", j."HierarchyLevel", j."Name"
+FROM "JobFunctions" AS j
+2025-03-17 11:09:38.410 -03:00 [INF] Executed action Faces.Api.Controllers.JobFunctionController.Get (Faces.Api) in 2599.3759ms
+2025-03-17 11:09:38.413 -03:00 [INF] Executed endpoint 'Faces.Api.Controllers.JobFunctionController.Get (Faces.Api)'
+2025-03-17 11:09:38.429 -03:00 [INF] Request finished HTTP/1.1 GET http://localhost:25001/api/jobfunction - 200 null application/json 2930.2989ms
+2025-03-17 11:09:38.498 -03:00 [INF] Request starting HTTP/1.1 GET http://localhost:25001/swagger - null null
+2025-03-17 11:09:38.511 -03:00 [INF] Request finished HTTP/1.1 GET http://localhost:25001/swagger - 301 0 null 12.9326ms
+2025-03-17 11:09:38.518 -03:00 [INF] Request starting HTTP/1.1 GET http://localhost:25001/swagger/index.html - null null
+2025-03-17 11:09:38.526 -03:00 [INF] Request finished HTTP/1.1 GET http://localhost:25001/swagger/index.html - 200 null text/html;charset=utf-8 8.222ms
+2025-03-17 11:09:38.550 -03:00 [INF] Request starting HTTP/1.1 GET http://localhost:25001/_framework/aspnetcore-browser-refresh.js - null null
+2025-03-17 11:09:38.557 -03:00 [INF] Request starting HTTP/1.1 GET http://localhost:25001/_vs/browserLink - null null
+2025-03-17 11:09:38.565 -03:00 [INF] Request finished HTTP/1.1 GET http://localhost:25001/_framework/aspnetcore-browser-refresh.js - 200 13754 application/javascript; charset=utf-8 14.98ms
+2025-03-17 11:09:38.613 -03:00 [INF] Request finished HTTP/1.1 GET http://localhost:25001/_vs/browserLink - 200 null text/javascript; charset=UTF-8 62.2722ms
+2025-03-17 11:09:38.665 -03:00 [INF] Request starting HTTP/1.1 GET http://localhost:25001/swagger/v1/swagger.json - null null
+2025-03-17 11:09:38.699 -03:00 [INF] Request starting HTTP/1.1 GET http://localhost:25001/swagger/favicon-32x32.png - null null
+2025-03-17 11:09:38.725 -03:00 [INF] Sending file. Request path: '/favicon-32x32.png'. Physical path: 'N/A'
+2025-03-17 11:09:38.727 -03:00 [INF] Request finished HTTP/1.1 GET http://localhost:25001/swagger/favicon-32x32.png - 200 628 image/png 28.2093ms
+2025-03-17 11:09:38.794 -03:00 [INF] Request finished HTTP/1.1 GET http://localhost:25001/swagger/v1/swagger.json - 200 null application/json;charset=utf-8 129.1173ms
+2025-03-17 11:09:41.371 -03:00 [INF] Request starting HTTP/1.1 OPTIONS http://localhost:25001/api/employee/99999999999 - null null
+2025-03-17 11:09:41.376 -03:00 [INF] CORS policy execution successful.
+2025-03-17 11:09:41.378 -03:00 [INF] Request finished HTTP/1.1 OPTIONS http://localhost:25001/api/employee/99999999999 - 204 null null 7.9152ms
+2025-03-17 11:09:41.384 -03:00 [INF] Request starting HTTP/1.1 GET http://localhost:25001/api/employee/99999999999 - application/json null
+2025-03-17 11:09:41.388 -03:00 [INF] CORS policy execution successful.
+2025-03-17 11:09:41.394 -03:00 [INF] Executing endpoint 'Faces.Api.Controllers.EmployeeController.GetByDocument (Faces.Api)'
+2025-03-17 11:09:41.412 -03:00 [INF] Route matched with {action = "GetByDocument", controller = "Employee"}. Executing controller action with signature Microsoft.AspNetCore.Mvc.IActionResult GetByDocument(System.String) on controller Faces.Api.Controllers.EmployeeController (Faces.Api).
+2025-03-17 11:09:41.509 -03:00 [INF] Request starting HTTP/1.1 OPTIONS http://localhost:25001/api/employee - null null
+2025-03-17 11:09:41.513 -03:00 [INF] CORS policy execution successful.
+2025-03-17 11:09:41.515 -03:00 [INF] Request finished HTTP/1.1 OPTIONS http://localhost:25001/api/employee - 204 null null 5.5611ms
+2025-03-17 11:09:41.521 -03:00 [INF] Request starting HTTP/1.1 GET http://localhost:25001/api/employee - application/json null
+2025-03-17 11:09:41.524 -03:00 [INF] CORS policy execution successful.
+2025-03-17 11:09:41.530 -03:00 [INF] Executing endpoint 'Faces.Api.Controllers.EmployeeController.Get (Faces.Api)'
+2025-03-17 11:09:41.533 -03:00 [INF] Route matched with {action = "Get", controller = "Employee"}. Executing controller action with signature Microsoft.AspNetCore.Mvc.IActionResult Get() on controller Faces.Api.Controllers.EmployeeController (Faces.Api).
+2025-03-17 11:09:41.820 -03:00 [INF] Executed DbCommand (17ms) [Parameters=[@__document_0='?'], CommandType='"Text"', CommandTimeout='30']
+SELECT s."ID", s."BirthDate", s."CreationDate", s."DeletionDate", s."DocNumber", s."Email", s."FirstName", s."IsDeleted", s."JobFunctionCode", s."LastName", s."ManagerID", s."PasswordHash", s."Code", s."ID0", s."Code0", p."ID", p."EmployeeID", p."Label", p."Number", s."HierarchyLevel", s."Name", s."BirthDate0", s."CreationDate0", s."DeletionDate0", s."DocNumber0", s."Email0", s."FirstName0", s."IsDeleted0", s."JobFunctionCode0", s."LastName0", s."ManagerID0", s."PasswordHash0", s."HierarchyLevel0", s."Name0"
+FROM (
+    SELECT e."ID", e."BirthDate", e."CreationDate", e."DeletionDate", e."DocNumber", e."Email", e."FirstName", e."IsDeleted", e."JobFunctionCode", e."LastName", e."ManagerID", e."PasswordHash", j."Code", j."HierarchyLevel", j."Name", e0."ID" AS "ID0", e0."BirthDate" AS "BirthDate0", e0."CreationDate" AS "CreationDate0", e0."DeletionDate" AS "DeletionDate0", e0."DocNumber" AS "DocNumber0", e0."Email" AS "Email0", e0."FirstName" AS "FirstName0", e0."IsDeleted" AS "IsDeleted0", e0."JobFunctionCode" AS "JobFunctionCode0", e0."LastName" AS "LastName0", e0."ManagerID" AS "ManagerID0", e0."PasswordHash" AS "PasswordHash0", j0."Code" AS "Code0", j0."HierarchyLevel" AS "HierarchyLevel0", j0."Name" AS "Name0"
+    FROM "Employees" AS e
+    INNER JOIN "JobFunctions" AS j ON e."JobFunctionCode" = j."Code"
+    LEFT JOIN "Employees" AS e0 ON e."ManagerID" = e0."ID"
+    LEFT JOIN "JobFunctions" AS j0 ON e0."JobFunctionCode" = j0."Code"
+    WHERE e."DocNumber" = @__document_0 AND NOT (e."IsDeleted")
+    LIMIT 1
+) AS s
+LEFT JOIN "Phones" AS p ON s."ID" = p."EmployeeID"
+ORDER BY s."ID", s."Code", s."ID0", s."Code0"
+2025-03-17 11:09:41.831 -03:00 [INF] Executed DbCommand (7ms) [Parameters=[@__document_0='?'], CommandType='"Text"', CommandTimeout='30']
+SELECT s."ID", s."BirthDate", s."CreationDate", s."DeletionDate", s."DocNumber", s."Email", s."FirstName", s."IsDeleted", s."JobFunctionCode", s."LastName", s."ManagerID", s."PasswordHash", s."Code", s."ID0", s."Code0", p."ID", p."EmployeeID", p."Label", p."Number", s."HierarchyLevel", s."Name", s."BirthDate0", s."CreationDate0", s."DeletionDate0", s."DocNumber0", s."Email0", s."FirstName0", s."IsDeleted0", s."JobFunctionCode0", s."LastName0", s."ManagerID0", s."PasswordHash0", s."HierarchyLevel0", s."Name0"
+FROM (
+    SELECT e."ID", e."BirthDate", e."CreationDate", e."DeletionDate", e."DocNumber", e."Email", e."FirstName", e."IsDeleted", e."JobFunctionCode", e."LastName", e."ManagerID", e."PasswordHash", j."Code", j."HierarchyLevel", j."Name", e0."ID" AS "ID0", e0."BirthDate" AS "BirthDate0", e0."CreationDate" AS "CreationDate0", e0."DeletionDate" AS "DeletionDate0", e0."DocNumber" AS "DocNumber0", e0."Email" AS "Email0", e0."FirstName" AS "FirstName0", e0."IsDeleted" AS "IsDeleted0", e0."JobFunctionCode" AS "JobFunctionCode0", e0."LastName" AS "LastName0", e0."ManagerID" AS "ManagerID0", e0."PasswordHash" AS "PasswordHash0", j0."Code" AS "Code0", j0."HierarchyLevel" AS "HierarchyLevel0", j0."Name" AS "Name0"
+    FROM "Employees" AS e
+    INNER JOIN "JobFunctions" AS j ON e."JobFunctionCode" = j."Code"
+    LEFT JOIN "Employees" AS e0 ON e."ManagerID" = e0."ID"
+    LEFT JOIN "JobFunctions" AS j0 ON e0."JobFunctionCode" = j0."Code"
+    WHERE e."DocNumber" = @__document_0 AND NOT (e."IsDeleted")
+    LIMIT 1
+) AS s
+LEFT JOIN "Phones" AS p ON s."ID" = p."EmployeeID"
+ORDER BY s."ID", s."Code", s."ID0", s."Code0"
+2025-03-17 11:09:41.966 -03:00 [INF] Executed DbCommand (5ms) [Parameters=[@__document_0='?'], CommandType='"Text"', CommandTimeout='30']
+SELECT s."ID", s."BirthDate", s."CreationDate", s."DeletionDate", s."DocNumber", s."Email", s."FirstName", s."IsDeleted", s."JobFunctionCode", s."LastName", s."ManagerID", s."PasswordHash", s."Code", s."ID0", s."Code0", p."ID", p."EmployeeID", p."Label", p."Number", s."HierarchyLevel", s."Name", s."BirthDate0", s."CreationDate0", s."DeletionDate0", s."DocNumber0", s."Email0", s."FirstName0", s."IsDeleted0", s."JobFunctionCode0", s."LastName0", s."ManagerID0", s."PasswordHash0", s."HierarchyLevel0", s."Name0"
+FROM (
+    SELECT e."ID", e."BirthDate", e."CreationDate", e."DeletionDate", e."DocNumber", e."Email", e."FirstName", e."IsDeleted", e."JobFunctionCode", e."LastName", e."ManagerID", e."PasswordHash", j."Code", j."HierarchyLevel", j."Name", e0."ID" AS "ID0", e0."BirthDate" AS "BirthDate0", e0."CreationDate" AS "CreationDate0", e0."DeletionDate" AS "DeletionDate0", e0."DocNumber" AS "DocNumber0", e0."Email" AS "Email0", e0."FirstName" AS "FirstName0", e0."IsDeleted" AS "IsDeleted0", e0."JobFunctionCode" AS "JobFunctionCode0", e0."LastName" AS "LastName0", e0."ManagerID" AS "ManagerID0", e0."PasswordHash" AS "PasswordHash0", j0."Code" AS "Code0", j0."HierarchyLevel" AS "HierarchyLevel0", j0."Name" AS "Name0"
+    FROM "Employees" AS e
+    INNER JOIN "JobFunctions" AS j ON e."JobFunctionCode" = j."Code"
+    LEFT JOIN "Employees" AS e0 ON e."ManagerID" = e0."ID"
+    LEFT JOIN "JobFunctions" AS j0 ON e0."JobFunctionCode" = j0."Code"
+    WHERE e."DocNumber" = @__document_0 AND NOT (e."IsDeleted")
+    LIMIT 1
+) AS s
+LEFT JOIN "Phones" AS p ON s."ID" = p."EmployeeID"
+ORDER BY s."ID", s."Code", s."ID0", s."Code0"
+2025-03-17 11:09:41.994 -03:00 [INF] Executed action Faces.Api.Controllers.EmployeeController.GetByDocument (Faces.Api) in 577.3668ms
+2025-03-17 11:09:42.016 -03:00 [INF] Executed endpoint 'Faces.Api.Controllers.EmployeeController.GetByDocument (Faces.Api)'
+2025-03-17 11:09:42.020 -03:00 [INF] Request finished HTTP/1.1 GET http://localhost:25001/api/employee/99999999999 - 200 null application/json 636.3606ms
+2025-03-17 11:09:42.036 -03:00 [INF] Executed DbCommand (4ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT e."ID", e."BirthDate", e."CreationDate", e."DeletionDate", e."DocNumber", e."Email", e."FirstName", e."IsDeleted", e."JobFunctionCode", e."LastName", e."ManagerID", e."PasswordHash", j."Code", e0."ID", j0."Code", p."ID", p."EmployeeID", p."Label", p."Number", j."HierarchyLevel", j."Name", e0."BirthDate", e0."CreationDate", e0."DeletionDate", e0."DocNumber", e0."Email", e0."FirstName", e0."IsDeleted", e0."JobFunctionCode", e0."LastName", e0."ManagerID", e0."PasswordHash", j0."HierarchyLevel", j0."Name"
+FROM "Employees" AS e
+INNER JOIN "JobFunctions" AS j ON e."JobFunctionCode" = j."Code"
+LEFT JOIN "Employees" AS e0 ON e."ManagerID" = e0."ID"
+LEFT JOIN "JobFunctions" AS j0 ON e0."JobFunctionCode" = j0."Code"
+LEFT JOIN "Phones" AS p ON e."ID" = p."EmployeeID"
+WHERE NOT (e."IsDeleted")
+ORDER BY e."ID", j."Code", e0."ID", j0."Code"
+2025-03-17 11:09:42.085 -03:00 [INF] Executed action Faces.Api.Controllers.EmployeeController.Get (Faces.Api) in 549.8262ms
+2025-03-17 11:09:42.087 -03:00 [INF] Executed endpoint 'Faces.Api.Controllers.EmployeeController.Get (Faces.Api)'
+2025-03-17 11:09:42.089 -03:00 [INF] Request finished HTTP/1.1 GET http://localhost:25001/api/employee - 200 null application/json 568.271ms
+2025-03-17 11:09:43.536 -03:00 [INF] Request starting HTTP/1.1 OPTIONS http://localhost:25001/api/jobfunction - null null
+2025-03-17 11:09:43.540 -03:00 [INF] CORS policy execution successful.
+2025-03-17 11:09:43.541 -03:00 [INF] Request finished HTTP/1.1 OPTIONS http://localhost:25001/api/jobfunction - 204 null null 4.9369ms
+2025-03-17 11:09:43.545 -03:00 [INF] Request starting HTTP/1.1 GET http://localhost:25001/api/jobfunction - application/json null
+2025-03-17 11:09:43.548 -03:00 [INF] CORS policy execution successful.
+2025-03-17 11:09:43.550 -03:00 [INF] Executing endpoint 'Faces.Api.Controllers.JobFunctionController.Get (Faces.Api)'
+2025-03-17 11:09:43.552 -03:00 [INF] Route matched with {action = "Get", controller = "JobFunction"}. Executing controller action with signature Microsoft.AspNetCore.Mvc.IActionResult Get() on controller Faces.Api.Controllers.JobFunctionController (Faces.Api).
+2025-03-17 11:09:43.562 -03:00 [INF] Executed DbCommand (3ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT j."Code", j."HierarchyLevel", j."Name"
+FROM "JobFunctions" AS j
+2025-03-17 11:09:43.569 -03:00 [INF] Executed action Faces.Api.Controllers.JobFunctionController.Get (Faces.Api) in 13.2647ms
+2025-03-17 11:09:43.571 -03:00 [INF] Executed endpoint 'Faces.Api.Controllers.JobFunctionController.Get (Faces.Api)'
+2025-03-17 11:09:43.573 -03:00 [INF] Request finished HTTP/1.1 GET http://localhost:25001/api/jobfunction - 200 null application/json 28.2565ms
+2025-03-17 11:09:46.688 -03:00 [INF] Request starting HTTP/1.1 GET http://localhost:25001/api/jobfunction - application/json null
+2025-03-17 11:09:46.691 -03:00 [INF] CORS policy execution successful.
+2025-03-17 11:09:46.693 -03:00 [INF] Executing endpoint 'Faces.Api.Controllers.JobFunctionController.Get (Faces.Api)'
+2025-03-17 11:09:46.694 -03:00 [INF] Route matched with {action = "Get", controller = "JobFunction"}. Executing controller action with signature Microsoft.AspNetCore.Mvc.IActionResult Get() on controller Faces.Api.Controllers.JobFunctionController (Faces.Api).
+2025-03-17 11:09:46.703 -03:00 [INF] Executed DbCommand (2ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT j."Code", j."HierarchyLevel", j."Name"
+FROM "JobFunctions" AS j
+2025-03-17 11:09:46.706 -03:00 [INF] Executed action Faces.Api.Controllers.JobFunctionController.Get (Faces.Api) in 7.63ms
+2025-03-17 11:09:46.707 -03:00 [INF] Executed endpoint 'Faces.Api.Controllers.JobFunctionController.Get (Faces.Api)'
+2025-03-17 11:09:46.709 -03:00 [INF] Request finished HTTP/1.1 GET http://localhost:25001/api/jobfunction - 200 null application/json 21.3859ms
+2025-03-17 11:09:49.119 -03:00 [INF] Request starting HTTP/1.1 OPTIONS http://localhost:25001/api/jobfunction - null null
+2025-03-17 11:09:49.122 -03:00 [INF] CORS policy execution successful.
+2025-03-17 11:09:49.124 -03:00 [INF] Request finished HTTP/1.1 OPTIONS http://localhost:25001/api/jobfunction - 204 null null 4.6563ms
+2025-03-17 11:09:49.129 -03:00 [INF] Request starting HTTP/1.1 GET http://localhost:25001/api/jobfunction - application/json null
+2025-03-17 11:09:49.132 -03:00 [INF] CORS policy execution successful.
+2025-03-17 11:09:49.133 -03:00 [INF] Executing endpoint 'Faces.Api.Controllers.JobFunctionController.Get (Faces.Api)'
+2025-03-17 11:09:49.135 -03:00 [INF] Route matched with {action = "Get", controller = "JobFunction"}. Executing controller action with signature Microsoft.AspNetCore.Mvc.IActionResult Get() on controller Faces.Api.Controllers.JobFunctionController (Faces.Api).
+2025-03-17 11:09:49.139 -03:00 [INF] Executed DbCommand (2ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT j."Code", j."HierarchyLevel", j."Name"
+FROM "JobFunctions" AS j
+2025-03-17 11:09:49.143 -03:00 [INF] Executed action Faces.Api.Controllers.JobFunctionController.Get (Faces.Api) in 5.987ms
+2025-03-17 11:09:49.145 -03:00 [INF] Executed endpoint 'Faces.Api.Controllers.JobFunctionController.Get (Faces.Api)'
+2025-03-17 11:09:49.146 -03:00 [INF] Request finished HTTP/1.1 GET http://localhost:25001/api/jobfunction - 200 null application/json 16.8621ms
+2025-03-17 11:09:56.420 -03:00 [INF] Request starting HTTP/1.1 OPTIONS http://localhost:25001/api/employee - null null
+2025-03-17 11:09:56.425 -03:00 [INF] CORS policy execution successful.
+2025-03-17 11:09:56.427 -03:00 [INF] Request finished HTTP/1.1 OPTIONS http://localhost:25001/api/employee - 204 null null 6.5992ms
+2025-03-17 11:09:56.431 -03:00 [INF] Request starting HTTP/1.1 PUT http://localhost:25001/api/employee - application/json 265
+2025-03-17 11:09:56.434 -03:00 [INF] CORS policy execution successful.
+2025-03-17 11:09:56.436 -03:00 [INF] Executing endpoint 'Faces.Api.Controllers.EmployeeController.Update (Faces.Api)'
+2025-03-17 11:09:56.444 -03:00 [INF] Route matched with {action = "Update", controller = "Employee"}. Executing controller action with signature Microsoft.AspNetCore.Mvc.IActionResult Update(Faces.Application.DTOs.EmployeeUpdateDto) on controller Faces.Api.Controllers.EmployeeController (Faces.Api).
+2025-03-17 11:09:56.457 -03:00 [INF] Executed DbCommand (6ms) [Parameters=[@__document_0='?'], CommandType='"Text"', CommandTimeout='30']
+SELECT s."ID", s."BirthDate", s."CreationDate", s."DeletionDate", s."DocNumber", s."Email", s."FirstName", s."IsDeleted", s."JobFunctionCode", s."LastName", s."ManagerID", s."PasswordHash", s."Code", s."ID0", s."Code0", p."ID", p."EmployeeID", p."Label", p."Number", s."HierarchyLevel", s."Name", s."BirthDate0", s."CreationDate0", s."DeletionDate0", s."DocNumber0", s."Email0", s."FirstName0", s."IsDeleted0", s."JobFunctionCode0", s."LastName0", s."ManagerID0", s."PasswordHash0", s."HierarchyLevel0", s."Name0"
+FROM (
+    SELECT e."ID", e."BirthDate", e."CreationDate", e."DeletionDate", e."DocNumber", e."Email", e."FirstName", e."IsDeleted", e."JobFunctionCode", e."LastName", e."ManagerID", e."PasswordHash", j."Code", j."HierarchyLevel", j."Name", e0."ID" AS "ID0", e0."BirthDate" AS "BirthDate0", e0."CreationDate" AS "CreationDate0", e0."DeletionDate" AS "DeletionDate0", e0."DocNumber" AS "DocNumber0", e0."Email" AS "Email0", e0."FirstName" AS "FirstName0", e0."IsDeleted" AS "IsDeleted0", e0."JobFunctionCode" AS "JobFunctionCode0", e0."LastName" AS "LastName0", e0."ManagerID" AS "ManagerID0", e0."PasswordHash" AS "PasswordHash0", j0."Code" AS "Code0", j0."HierarchyLevel" AS "HierarchyLevel0", j0."Name" AS "Name0"
+    FROM "Employees" AS e
+    INNER JOIN "JobFunctions" AS j ON e."JobFunctionCode" = j."Code"
+    LEFT JOIN "Employees" AS e0 ON e."ManagerID" = e0."ID"
+    LEFT JOIN "JobFunctions" AS j0 ON e0."JobFunctionCode" = j0."Code"
+    WHERE e."DocNumber" = @__document_0 AND NOT (e."IsDeleted")
+    LIMIT 1
+) AS s
+LEFT JOIN "Phones" AS p ON s."ID" = p."EmployeeID"
+ORDER BY s."ID", s."Code", s."ID0", s."Code0"
+2025-03-17 11:09:56.523 -03:00 [INF] Executed DbCommand (3ms) [Parameters=[@__code_0='?'], CommandType='"Text"', CommandTimeout='30']
+SELECT j."Code", j."HierarchyLevel", j."Name"
+FROM "JobFunctions" AS j
+WHERE j."Code" = @__code_0
+LIMIT 1
+2025-03-17 11:09:56.568 -03:00 [INF] Executed DbCommand (4ms) [Parameters=[@__id_0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT s."ID", s."BirthDate", s."CreationDate", s."DeletionDate", s."DocNumber", s."Email", s."FirstName", s."IsDeleted", s."JobFunctionCode", s."LastName", s."ManagerID", s."PasswordHash", s."Code", s."ID0", s."Code0", p."ID", p."EmployeeID", p."Label", p."Number", s."HierarchyLevel", s."Name", s."BirthDate0", s."CreationDate0", s."DeletionDate0", s."DocNumber0", s."Email0", s."FirstName0", s."IsDeleted0", s."JobFunctionCode0", s."LastName0", s."ManagerID0", s."PasswordHash0", s."HierarchyLevel0", s."Name0"
+FROM (
+    SELECT e."ID", e."BirthDate", e."CreationDate", e."DeletionDate", e."DocNumber", e."Email", e."FirstName", e."IsDeleted", e."JobFunctionCode", e."LastName", e."ManagerID", e."PasswordHash", j."Code", j."HierarchyLevel", j."Name", e0."ID" AS "ID0", e0."BirthDate" AS "BirthDate0", e0."CreationDate" AS "CreationDate0", e0."DeletionDate" AS "DeletionDate0", e0."DocNumber" AS "DocNumber0", e0."Email" AS "Email0", e0."FirstName" AS "FirstName0", e0."IsDeleted" AS "IsDeleted0", e0."JobFunctionCode" AS "JobFunctionCode0", e0."LastName" AS "LastName0", e0."ManagerID" AS "ManagerID0", e0."PasswordHash" AS "PasswordHash0", j0."Code" AS "Code0", j0."HierarchyLevel" AS "HierarchyLevel0", j0."Name" AS "Name0"
+    FROM "Employees" AS e
+    INNER JOIN "JobFunctions" AS j ON e."JobFunctionCode" = j."Code"
+    LEFT JOIN "Employees" AS e0 ON e."ManagerID" = e0."ID"
+    LEFT JOIN "JobFunctions" AS j0 ON e0."JobFunctionCode" = j0."Code"
+    WHERE e."ID" = @__id_0 AND NOT (e."IsDeleted")
+    LIMIT 1
+) AS s
+LEFT JOIN "Phones" AS p ON s."ID" = p."EmployeeID"
+ORDER BY s."ID", s."Code", s."ID0", s."Code0"
+2025-03-17 11:09:56.645 -03:00 [ERR] Failed to update the employee
+System.InvalidOperationException: An employee must have minimum age of 18
+   at Faces.Domain.Entities.Employee.ValidateToCreateOrUpdate(Employee authEmployeeCreating) in D:\Git\faces\API\Faces\Faces.Domain\Entities\Employee.cs:line 192
+   at Faces.Application.Services.EmployeeService.Update(EmployeeUpdateDto employeeDto) in D:\Git\faces\API\Faces\Faces.Application\Services\IEmployeeService.cs:line 63
+   at Faces.Api.Controllers.EmployeeController.Update(EmployeeUpdateDto employeeUpdate) in D:\Git\faces\API\Faces\Faces.Api\Controllers\EmployeeController.cs:line 60
+2025-03-17 11:09:56.680 -03:00 [INF] Executed action Faces.Api.Controllers.EmployeeController.Update (Faces.Api) in 232.5646ms
+2025-03-17 11:09:56.682 -03:00 [INF] Executed endpoint 'Faces.Api.Controllers.EmployeeController.Update (Faces.Api)'
+2025-03-17 11:09:56.683 -03:00 [INF] Request finished HTTP/1.1 PUT http://localhost:25001/api/employee - 400 null application/json 252.0326ms
+2025-03-17 11:10:00.275 -03:00 [INF] Request starting HTTP/1.1 OPTIONS http://localhost:25001/api/jobfunction - null null
+2025-03-17 11:10:00.278 -03:00 [INF] CORS policy execution successful.
+2025-03-17 11:10:00.279 -03:00 [INF] Request finished HTTP/1.1 OPTIONS http://localhost:25001/api/jobfunction - 204 null null 4.7362ms
+2025-03-17 11:10:00.285 -03:00 [INF] Request starting HTTP/1.1 GET http://localhost:25001/api/jobfunction - application/json null
+2025-03-17 11:10:00.289 -03:00 [INF] CORS policy execution successful.
+2025-03-17 11:10:00.290 -03:00 [INF] Executing endpoint 'Faces.Api.Controllers.JobFunctionController.Get (Faces.Api)'
+2025-03-17 11:10:00.292 -03:00 [INF] Route matched with {action = "Get", controller = "JobFunction"}. Executing controller action with signature Microsoft.AspNetCore.Mvc.IActionResult Get() on controller Faces.Api.Controllers.JobFunctionController (Faces.Api).
+2025-03-17 11:10:00.298 -03:00 [INF] Executed DbCommand (2ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT j."Code", j."HierarchyLevel", j."Name"
+FROM "JobFunctions" AS j
+2025-03-17 11:10:00.302 -03:00 [INF] Executed action Faces.Api.Controllers.JobFunctionController.Get (Faces.Api) in 6.9193ms
+2025-03-17 11:10:00.304 -03:00 [INF] Executed endpoint 'Faces.Api.Controllers.JobFunctionController.Get (Faces.Api)'
+2025-03-17 11:10:00.306 -03:00 [INF] Request finished HTTP/1.1 GET http://localhost:25001/api/jobfunction - 200 null application/json 20.7928ms
+2025-03-17 11:10:01.447 -03:00 [INF] Request starting HTTP/1.1 OPTIONS http://localhost:25001/api/employee - null null
+2025-03-17 11:10:01.450 -03:00 [INF] CORS policy execution successful.
+2025-03-17 11:10:01.452 -03:00 [INF] Request finished HTTP/1.1 OPTIONS http://localhost:25001/api/employee - 204 null null 5.3048ms
+2025-03-17 11:10:01.456 -03:00 [INF] Request starting HTTP/1.1 PUT http://localhost:25001/api/employee - application/json 199
+2025-03-17 11:10:01.459 -03:00 [INF] CORS policy execution successful.
+2025-03-17 11:10:01.461 -03:00 [INF] Executing endpoint 'Faces.Api.Controllers.EmployeeController.Update (Faces.Api)'
+2025-03-17 11:10:01.462 -03:00 [INF] Route matched with {action = "Update", controller = "Employee"}. Executing controller action with signature Microsoft.AspNetCore.Mvc.IActionResult Update(Faces.Application.DTOs.EmployeeUpdateDto) on controller Faces.Api.Controllers.EmployeeController (Faces.Api).
+2025-03-17 11:10:01.469 -03:00 [INF] Executed DbCommand (5ms) [Parameters=[@__document_0='?'], CommandType='"Text"', CommandTimeout='30']
+SELECT s."ID", s."BirthDate", s."CreationDate", s."DeletionDate", s."DocNumber", s."Email", s."FirstName", s."IsDeleted", s."JobFunctionCode", s."LastName", s."ManagerID", s."PasswordHash", s."Code", s."ID0", s."Code0", p."ID", p."EmployeeID", p."Label", p."Number", s."HierarchyLevel", s."Name", s."BirthDate0", s."CreationDate0", s."DeletionDate0", s."DocNumber0", s."Email0", s."FirstName0", s."IsDeleted0", s."JobFunctionCode0", s."LastName0", s."ManagerID0", s."PasswordHash0", s."HierarchyLevel0", s."Name0"
+FROM (
+    SELECT e."ID", e."BirthDate", e."CreationDate", e."DeletionDate", e."DocNumber", e."Email", e."FirstName", e."IsDeleted", e."JobFunctionCode", e."LastName", e."ManagerID", e."PasswordHash", j."Code", j."HierarchyLevel", j."Name", e0."ID" AS "ID0", e0."BirthDate" AS "BirthDate0", e0."CreationDate" AS "CreationDate0", e0."DeletionDate" AS "DeletionDate0", e0."DocNumber" AS "DocNumber0", e0."Email" AS "Email0", e0."FirstName" AS "FirstName0", e0."IsDeleted" AS "IsDeleted0", e0."JobFunctionCode" AS "JobFunctionCode0", e0."LastName" AS "LastName0", e0."ManagerID" AS "ManagerID0", e0."PasswordHash" AS "PasswordHash0", j0."Code" AS "Code0", j0."HierarchyLevel" AS "HierarchyLevel0", j0."Name" AS "Name0"
+    FROM "Employees" AS e
+    INNER JOIN "JobFunctions" AS j ON e."JobFunctionCode" = j."Code"
+    LEFT JOIN "Employees" AS e0 ON e."ManagerID" = e0."ID"
+    LEFT JOIN "JobFunctions" AS j0 ON e0."JobFunctionCode" = j0."Code"
+    WHERE e."DocNumber" = @__document_0 AND NOT (e."IsDeleted")
+    LIMIT 1
+) AS s
+LEFT JOIN "Phones" AS p ON s."ID" = p."EmployeeID"
+ORDER BY s."ID", s."Code", s."ID0", s."Code0"
+2025-03-17 11:10:01.477 -03:00 [INF] Executed DbCommand (2ms) [Parameters=[@__code_0='?'], CommandType='"Text"', CommandTimeout='30']
+SELECT j."Code", j."HierarchyLevel", j."Name"
+FROM "JobFunctions" AS j
+WHERE j."Code" = @__code_0
+LIMIT 1
+2025-03-17 11:10:01.483 -03:00 [INF] Executed DbCommand (4ms) [Parameters=[@__id_0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT s."ID", s."BirthDate", s."CreationDate", s."DeletionDate", s."DocNumber", s."Email", s."FirstName", s."IsDeleted", s."JobFunctionCode", s."LastName", s."ManagerID", s."PasswordHash", s."Code", s."ID0", s."Code0", p."ID", p."EmployeeID", p."Label", p."Number", s."HierarchyLevel", s."Name", s."BirthDate0", s."CreationDate0", s."DeletionDate0", s."DocNumber0", s."Email0", s."FirstName0", s."IsDeleted0", s."JobFunctionCode0", s."LastName0", s."ManagerID0", s."PasswordHash0", s."HierarchyLevel0", s."Name0"
+FROM (
+    SELECT e."ID", e."BirthDate", e."CreationDate", e."DeletionDate", e."DocNumber", e."Email", e."FirstName", e."IsDeleted", e."JobFunctionCode", e."LastName", e."ManagerID", e."PasswordHash", j."Code", j."HierarchyLevel", j."Name", e0."ID" AS "ID0", e0."BirthDate" AS "BirthDate0", e0."CreationDate" AS "CreationDate0", e0."DeletionDate" AS "DeletionDate0", e0."DocNumber" AS "DocNumber0", e0."Email" AS "Email0", e0."FirstName" AS "FirstName0", e0."IsDeleted" AS "IsDeleted0", e0."JobFunctionCode" AS "JobFunctionCode0", e0."LastName" AS "LastName0", e0."ManagerID" AS "ManagerID0", e0."PasswordHash" AS "PasswordHash0", j0."Code" AS "Code0", j0."HierarchyLevel" AS "HierarchyLevel0", j0."Name" AS "Name0"
+    FROM "Employees" AS e
+    INNER JOIN "JobFunctions" AS j ON e."JobFunctionCode" = j."Code"
+    LEFT JOIN "Employees" AS e0 ON e."ManagerID" = e0."ID"
+    LEFT JOIN "JobFunctions" AS j0 ON e0."JobFunctionCode" = j0."Code"
+    WHERE e."ID" = @__id_0 AND NOT (e."IsDeleted")
+    LIMIT 1
+) AS s
+LEFT JOIN "Phones" AS p ON s."ID" = p."EmployeeID"
+ORDER BY s."ID", s."Code", s."ID0", s."Code0"
+2025-03-17 11:10:01.515 -03:00 [ERR] Failed to update the employee
+System.MissingFieldException: A manager is required
+   at Faces.Domain.Entities.Employee.ValidateToCreateOrUpdate(Employee authEmployeeCreating) in D:\Git\faces\API\Faces\Faces.Domain\Entities\Employee.cs:line 188
+   at Faces.Application.Services.EmployeeService.Update(EmployeeUpdateDto employeeDto) in D:\Git\faces\API\Faces\Faces.Application\Services\IEmployeeService.cs:line 63
+   at Faces.Api.Controllers.EmployeeController.Update(EmployeeUpdateDto employeeUpdate) in D:\Git\faces\API\Faces\Faces.Api\Controllers\EmployeeController.cs:line 60
+2025-03-17 11:10:01.518 -03:00 [INF] Executed action Faces.Api.Controllers.EmployeeController.Update (Faces.Api) in 54.8358ms
+2025-03-17 11:10:01.520 -03:00 [INF] Executed endpoint 'Faces.Api.Controllers.EmployeeController.Update (Faces.Api)'
+2025-03-17 11:10:01.521 -03:00 [INF] Request finished HTTP/1.1 PUT http://localhost:25001/api/employee - 400 null application/json 65.321ms
+2025-03-17 11:10:05.257 -03:00 [INF] Request starting HTTP/1.1 PUT http://localhost:25001/api/employee - application/json 200
+2025-03-17 11:10:05.259 -03:00 [INF] CORS policy execution successful.
+2025-03-17 11:10:05.261 -03:00 [INF] Executing endpoint 'Faces.Api.Controllers.EmployeeController.Update (Faces.Api)'
+2025-03-17 11:10:05.262 -03:00 [INF] Route matched with {action = "Update", controller = "Employee"}. Executing controller action with signature Microsoft.AspNetCore.Mvc.IActionResult Update(Faces.Application.DTOs.EmployeeUpdateDto) on controller Faces.Api.Controllers.EmployeeController (Faces.Api).
+2025-03-17 11:10:05.270 -03:00 [INF] Executed DbCommand (4ms) [Parameters=[@__document_0='?'], CommandType='"Text"', CommandTimeout='30']
+SELECT s."ID", s."BirthDate", s."CreationDate", s."DeletionDate", s."DocNumber", s."Email", s."FirstName", s."IsDeleted", s."JobFunctionCode", s."LastName", s."ManagerID", s."PasswordHash", s."Code", s."ID0", s."Code0", p."ID", p."EmployeeID", p."Label", p."Number", s."HierarchyLevel", s."Name", s."BirthDate0", s."CreationDate0", s."DeletionDate0", s."DocNumber0", s."Email0", s."FirstName0", s."IsDeleted0", s."JobFunctionCode0", s."LastName0", s."ManagerID0", s."PasswordHash0", s."HierarchyLevel0", s."Name0"
+FROM (
+    SELECT e."ID", e."BirthDate", e."CreationDate", e."DeletionDate", e."DocNumber", e."Email", e."FirstName", e."IsDeleted", e."JobFunctionCode", e."LastName", e."ManagerID", e."PasswordHash", j."Code", j."HierarchyLevel", j."Name", e0."ID" AS "ID0", e0."BirthDate" AS "BirthDate0", e0."CreationDate" AS "CreationDate0", e0."DeletionDate" AS "DeletionDate0", e0."DocNumber" AS "DocNumber0", e0."Email" AS "Email0", e0."FirstName" AS "FirstName0", e0."IsDeleted" AS "IsDeleted0", e0."JobFunctionCode" AS "JobFunctionCode0", e0."LastName" AS "LastName0", e0."ManagerID" AS "ManagerID0", e0."PasswordHash" AS "PasswordHash0", j0."Code" AS "Code0", j0."HierarchyLevel" AS "HierarchyLevel0", j0."Name" AS "Name0"
+    FROM "Employees" AS e
+    INNER JOIN "JobFunctions" AS j ON e."JobFunctionCode" = j."Code"
+    LEFT JOIN "Employees" AS e0 ON e."ManagerID" = e0."ID"
+    LEFT JOIN "JobFunctions" AS j0 ON e0."JobFunctionCode" = j0."Code"
+    WHERE e."DocNumber" = @__document_0 AND NOT (e."IsDeleted")
+    LIMIT 1
+) AS s
+LEFT JOIN "Phones" AS p ON s."ID" = p."EmployeeID"
+ORDER BY s."ID", s."Code", s."ID0", s."Code0"
+2025-03-17 11:10:05.277 -03:00 [INF] Executed DbCommand (2ms) [Parameters=[@__code_0='?'], CommandType='"Text"', CommandTimeout='30']
+SELECT j."Code", j."HierarchyLevel", j."Name"
+FROM "JobFunctions" AS j
+WHERE j."Code" = @__code_0
+LIMIT 1
+2025-03-17 11:10:05.284 -03:00 [INF] Executed DbCommand (3ms) [Parameters=[@__id_0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT s."ID", s."BirthDate", s."CreationDate", s."DeletionDate", s."DocNumber", s."Email", s."FirstName", s."IsDeleted", s."JobFunctionCode", s."LastName", s."ManagerID", s."PasswordHash", s."Code", s."ID0", s."Code0", p."ID", p."EmployeeID", p."Label", p."Number", s."HierarchyLevel", s."Name", s."BirthDate0", s."CreationDate0", s."DeletionDate0", s."DocNumber0", s."Email0", s."FirstName0", s."IsDeleted0", s."JobFunctionCode0", s."LastName0", s."ManagerID0", s."PasswordHash0", s."HierarchyLevel0", s."Name0"
+FROM (
+    SELECT e."ID", e."BirthDate", e."CreationDate", e."DeletionDate", e."DocNumber", e."Email", e."FirstName", e."IsDeleted", e."JobFunctionCode", e."LastName", e."ManagerID", e."PasswordHash", j."Code", j."HierarchyLevel", j."Name", e0."ID" AS "ID0", e0."BirthDate" AS "BirthDate0", e0."CreationDate" AS "CreationDate0", e0."DeletionDate" AS "DeletionDate0", e0."DocNumber" AS "DocNumber0", e0."Email" AS "Email0", e0."FirstName" AS "FirstName0", e0."IsDeleted" AS "IsDeleted0", e0."JobFunctionCode" AS "JobFunctionCode0", e0."LastName" AS "LastName0", e0."ManagerID" AS "ManagerID0", e0."PasswordHash" AS "PasswordHash0", j0."Code" AS "Code0", j0."HierarchyLevel" AS "HierarchyLevel0", j0."Name" AS "Name0"
+    FROM "Employees" AS e
+    INNER JOIN "JobFunctions" AS j ON e."JobFunctionCode" = j."Code"
+    LEFT JOIN "Employees" AS e0 ON e."ManagerID" = e0."ID"
+    LEFT JOIN "JobFunctions" AS j0 ON e0."JobFunctionCode" = j0."Code"
+    WHERE e."ID" = @__id_0 AND NOT (e."IsDeleted")
+    LIMIT 1
+) AS s
+LEFT JOIN "Phones" AS p ON s."ID" = p."EmployeeID"
+ORDER BY s."ID", s."Code", s."ID0", s."Code0"
+2025-03-17 11:10:05.303 -03:00 [INF] Executed DbCommand (2ms) [Parameters=[@__document_0='?', @__exceptEmployeeId_1='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT EXISTS (
+    SELECT 1
+    FROM "Employees" AS e
+    WHERE e."DocNumber" = @__document_0 AND e."ID" <> @__exceptEmployeeId_1)
+2025-03-17 11:10:05.329 -03:00 [INF] Executed DbCommand (3ms) [Parameters=[@__employee_ID_0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT e0."ID", e0."BirthDate", e0."CreationDate", e0."DeletionDate", e0."DocNumber", e0."Email", e0."FirstName", e0."IsDeleted", e0."JobFunctionCode", e0."LastName", e0."ManagerID", e0."PasswordHash", p."ID", p."EmployeeID", p."Label", p."Number"
+FROM (
+    SELECT e."ID", e."BirthDate", e."CreationDate", e."DeletionDate", e."DocNumber", e."Email", e."FirstName", e."IsDeleted", e."JobFunctionCode", e."LastName", e."ManagerID", e."PasswordHash"
+    FROM "Employees" AS e
+    WHERE e."ID" = @__employee_ID_0
+    LIMIT 1
+) AS e0
+LEFT JOIN "Phones" AS p ON e0."ID" = p."EmployeeID"
+ORDER BY e0."ID"
+2025-03-17 11:10:05.504 -03:00 [INF] Executed DbCommand (13ms) [Parameters=[@p11='?' (DbType = Int32), @p0='?', @p1='?' (DbType = DateTime), @p2='?' (DbType = DateTime), @p3='?', @p4='?', @p5='?', @p6='?' (DbType = Boolean), @p7='?', @p8='?', @p9='?' (DbType = Int32), @p10='?'], CommandType='"Text"', CommandTimeout='30']
+UPDATE "Employees" SET "BirthDate" = @p0, "CreationDate" = @p1, "DeletionDate" = @p2, "DocNumber" = @p3, "Email" = @p4, "FirstName" = @p5, "IsDeleted" = @p6, "JobFunctionCode" = @p7, "LastName" = @p8, "ManagerID" = @p9, "PasswordHash" = @p10
+WHERE "ID" = @p11;
+2025-03-17 11:10:05.514 -03:00 [INF] Executed action Faces.Api.Controllers.EmployeeController.Update (Faces.Api) in 248.7722ms
+2025-03-17 11:10:05.516 -03:00 [INF] Executed endpoint 'Faces.Api.Controllers.EmployeeController.Update (Faces.Api)'
+2025-03-17 11:10:05.518 -03:00 [INF] Request finished HTTP/1.1 PUT http://localhost:25001/api/employee - 200 null application/json 260.9341ms
+2025-03-17 11:10:05.522 -03:00 [INF] Request starting HTTP/1.1 GET http://localhost:25001/api/employee - application/json null
+2025-03-17 11:10:05.524 -03:00 [INF] CORS policy execution successful.
+2025-03-17 11:10:05.525 -03:00 [INF] Executing endpoint 'Faces.Api.Controllers.EmployeeController.Get (Faces.Api)'
+2025-03-17 11:10:05.526 -03:00 [INF] Route matched with {action = "Get", controller = "Employee"}. Executing controller action with signature Microsoft.AspNetCore.Mvc.IActionResult Get() on controller Faces.Api.Controllers.EmployeeController (Faces.Api).
+2025-03-17 11:10:05.546 -03:00 [INF] Executed DbCommand (15ms) [Parameters=[@__document_0='?'], CommandType='"Text"', CommandTimeout='30']
+SELECT s."ID", s."BirthDate", s."CreationDate", s."DeletionDate", s."DocNumber", s."Email", s."FirstName", s."IsDeleted", s."JobFunctionCode", s."LastName", s."ManagerID", s."PasswordHash", s."Code", s."ID0", s."Code0", p."ID", p."EmployeeID", p."Label", p."Number", s."HierarchyLevel", s."Name", s."BirthDate0", s."CreationDate0", s."DeletionDate0", s."DocNumber0", s."Email0", s."FirstName0", s."IsDeleted0", s."JobFunctionCode0", s."LastName0", s."ManagerID0", s."PasswordHash0", s."HierarchyLevel0", s."Name0"
+FROM (
+    SELECT e."ID", e."BirthDate", e."CreationDate", e."DeletionDate", e."DocNumber", e."Email", e."FirstName", e."IsDeleted", e."JobFunctionCode", e."LastName", e."ManagerID", e."PasswordHash", j."Code", j."HierarchyLevel", j."Name", e0."ID" AS "ID0", e0."BirthDate" AS "BirthDate0", e0."CreationDate" AS "CreationDate0", e0."DeletionDate" AS "DeletionDate0", e0."DocNumber" AS "DocNumber0", e0."Email" AS "Email0", e0."FirstName" AS "FirstName0", e0."IsDeleted" AS "IsDeleted0", e0."JobFunctionCode" AS "JobFunctionCode0", e0."LastName" AS "LastName0", e0."ManagerID" AS "ManagerID0", e0."PasswordHash" AS "PasswordHash0", j0."Code" AS "Code0", j0."HierarchyLevel" AS "HierarchyLevel0", j0."Name" AS "Name0"
+    FROM "Employees" AS e
+    INNER JOIN "JobFunctions" AS j ON e."JobFunctionCode" = j."Code"
+    LEFT JOIN "Employees" AS e0 ON e."ManagerID" = e0."ID"
+    LEFT JOIN "JobFunctions" AS j0 ON e0."JobFunctionCode" = j0."Code"
+    WHERE e."DocNumber" = @__document_0 AND NOT (e."IsDeleted")
+    LIMIT 1
+) AS s
+LEFT JOIN "Phones" AS p ON s."ID" = p."EmployeeID"
+ORDER BY s."ID", s."Code", s."ID0", s."Code0"
+2025-03-17 11:10:05.555 -03:00 [INF] Executed DbCommand (3ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT e."ID", e."BirthDate", e."CreationDate", e."DeletionDate", e."DocNumber", e."Email", e."FirstName", e."IsDeleted", e."JobFunctionCode", e."LastName", e."ManagerID", e."PasswordHash", j."Code", e0."ID", j0."Code", p."ID", p."EmployeeID", p."Label", p."Number", j."HierarchyLevel", j."Name", e0."BirthDate", e0."CreationDate", e0."DeletionDate", e0."DocNumber", e0."Email", e0."FirstName", e0."IsDeleted", e0."JobFunctionCode", e0."LastName", e0."ManagerID", e0."PasswordHash", j0."HierarchyLevel", j0."Name"
+FROM "Employees" AS e
+INNER JOIN "JobFunctions" AS j ON e."JobFunctionCode" = j."Code"
+LEFT JOIN "Employees" AS e0 ON e."ManagerID" = e0."ID"
+LEFT JOIN "JobFunctions" AS j0 ON e0."JobFunctionCode" = j0."Code"
+LEFT JOIN "Phones" AS p ON e."ID" = p."EmployeeID"
+WHERE NOT (e."IsDeleted")
+ORDER BY e."ID", j."Code", e0."ID", j0."Code"
+2025-03-17 11:10:05.558 -03:00 [INF] Executed action Faces.Api.Controllers.EmployeeController.Get (Faces.Api) in 29.2204ms
+2025-03-17 11:10:05.560 -03:00 [INF] Executed endpoint 'Faces.Api.Controllers.EmployeeController.Get (Faces.Api)'
+2025-03-17 11:10:05.561 -03:00 [INF] Request finished HTTP/1.1 GET http://localhost:25001/api/employee - 200 null application/json 39.0996ms
+2025-03-17 11:10:08.267 -03:00 [INF] Request starting HTTP/1.1 OPTIONS http://localhost:25001/api/jobfunction - null null
+2025-03-17 11:10:08.270 -03:00 [INF] CORS policy execution successful.
+2025-03-17 11:10:08.271 -03:00 [INF] Request finished HTTP/1.1 OPTIONS http://localhost:25001/api/jobfunction - 204 null null 4.6585ms
+2025-03-17 11:10:08.276 -03:00 [INF] Request starting HTTP/1.1 GET http://localhost:25001/api/jobfunction - application/json null
+2025-03-17 11:10:08.279 -03:00 [INF] CORS policy execution successful.
+2025-03-17 11:10:08.280 -03:00 [INF] Executing endpoint 'Faces.Api.Controllers.JobFunctionController.Get (Faces.Api)'
+2025-03-17 11:10:08.281 -03:00 [INF] Route matched with {action = "Get", controller = "JobFunction"}. Executing controller action with signature Microsoft.AspNetCore.Mvc.IActionResult Get() on controller Faces.Api.Controllers.JobFunctionController (Faces.Api).
+2025-03-17 11:10:08.286 -03:00 [INF] Executed DbCommand (2ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT j."Code", j."HierarchyLevel", j."Name"
+FROM "JobFunctions" AS j
+2025-03-17 11:10:08.288 -03:00 [INF] Executed action Faces.Api.Controllers.JobFunctionController.Get (Faces.Api) in 5.0749ms
+2025-03-17 11:10:08.291 -03:00 [INF] Executed endpoint 'Faces.Api.Controllers.JobFunctionController.Get (Faces.Api)'
+2025-03-17 11:10:08.293 -03:00 [INF] Request finished HTTP/1.1 GET http://localhost:25001/api/jobfunction - 200 null application/json 16.4619ms
+2025-03-17 11:10:10.015 -03:00 [INF] Request starting HTTP/1.1 GET http://localhost:25001/api/jobfunction - application/json null
+2025-03-17 11:10:10.018 -03:00 [INF] CORS policy execution successful.
+2025-03-17 11:10:10.019 -03:00 [INF] Executing endpoint 'Faces.Api.Controllers.JobFunctionController.Get (Faces.Api)'
+2025-03-17 11:10:10.021 -03:00 [INF] Route matched with {action = "Get", controller = "JobFunction"}. Executing controller action with signature Microsoft.AspNetCore.Mvc.IActionResult Get() on controller Faces.Api.Controllers.JobFunctionController (Faces.Api).
+2025-03-17 11:10:10.027 -03:00 [INF] Executed DbCommand (2ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT j."Code", j."HierarchyLevel", j."Name"
+FROM "JobFunctions" AS j
+2025-03-17 11:10:10.030 -03:00 [INF] Executed action Faces.Api.Controllers.JobFunctionController.Get (Faces.Api) in 6.2883ms
+2025-03-17 11:10:10.031 -03:00 [INF] Executed endpoint 'Faces.Api.Controllers.JobFunctionController.Get (Faces.Api)'
+2025-03-17 11:10:10.032 -03:00 [INF] Request finished HTTP/1.1 GET http://localhost:25001/api/jobfunction - 200 null application/json 17.4918ms
+2025-03-17 11:10:11.929 -03:00 [INF] Request starting HTTP/1.1 GET http://localhost:25001/api/jobfunction - application/json null
+2025-03-17 11:10:11.932 -03:00 [INF] CORS policy execution successful.
+2025-03-17 11:10:11.934 -03:00 [INF] Executing endpoint 'Faces.Api.Controllers.JobFunctionController.Get (Faces.Api)'
+2025-03-17 11:10:11.935 -03:00 [INF] Route matched with {action = "Get", controller = "JobFunction"}. Executing controller action with signature Microsoft.AspNetCore.Mvc.IActionResult Get() on controller Faces.Api.Controllers.JobFunctionController (Faces.Api).
+2025-03-17 11:10:11.941 -03:00 [INF] Executed DbCommand (3ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT j."Code", j."HierarchyLevel", j."Name"
+FROM "JobFunctions" AS j
+2025-03-17 11:10:11.944 -03:00 [INF] Executed action Faces.Api.Controllers.JobFunctionController.Get (Faces.Api) in 6.5796ms
+2025-03-17 11:10:11.946 -03:00 [INF] Executed endpoint 'Faces.Api.Controllers.JobFunctionController.Get (Faces.Api)'
+2025-03-17 11:10:11.947 -03:00 [INF] Request finished HTTP/1.1 GET http://localhost:25001/api/jobfunction - 200 null application/json 18.2ms
+2025-03-17 11:10:14.448 -03:00 [INF] Request starting HTTP/1.1 OPTIONS http://localhost:25001/api/employee - null null
+2025-03-17 11:10:14.451 -03:00 [INF] CORS policy execution successful.
+2025-03-17 11:10:14.452 -03:00 [INF] Request finished HTTP/1.1 OPTIONS http://localhost:25001/api/employee - 204 null null 4.0412ms
+2025-03-17 11:10:14.457 -03:00 [INF] Request starting HTTP/1.1 PUT http://localhost:25001/api/employee - application/json 175
+2025-03-17 11:10:14.459 -03:00 [INF] CORS policy execution successful.
+2025-03-17 11:10:14.460 -03:00 [INF] Executing endpoint 'Faces.Api.Controllers.EmployeeController.Update (Faces.Api)'
+2025-03-17 11:10:14.461 -03:00 [INF] Route matched with {action = "Update", controller = "Employee"}. Executing controller action with signature Microsoft.AspNetCore.Mvc.IActionResult Update(Faces.Application.DTOs.EmployeeUpdateDto) on controller Faces.Api.Controllers.EmployeeController (Faces.Api).
+2025-03-17 11:10:14.468 -03:00 [INF] Executed DbCommand (3ms) [Parameters=[@__document_0='?'], CommandType='"Text"', CommandTimeout='30']
+SELECT s."ID", s."BirthDate", s."CreationDate", s."DeletionDate", s."DocNumber", s."Email", s."FirstName", s."IsDeleted", s."JobFunctionCode", s."LastName", s."ManagerID", s."PasswordHash", s."Code", s."ID0", s."Code0", p."ID", p."EmployeeID", p."Label", p."Number", s."HierarchyLevel", s."Name", s."BirthDate0", s."CreationDate0", s."DeletionDate0", s."DocNumber0", s."Email0", s."FirstName0", s."IsDeleted0", s."JobFunctionCode0", s."LastName0", s."ManagerID0", s."PasswordHash0", s."HierarchyLevel0", s."Name0"
+FROM (
+    SELECT e."ID", e."BirthDate", e."CreationDate", e."DeletionDate", e."DocNumber", e."Email", e."FirstName", e."IsDeleted", e."JobFunctionCode", e."LastName", e."ManagerID", e."PasswordHash", j."Code", j."HierarchyLevel", j."Name", e0."ID" AS "ID0", e0."BirthDate" AS "BirthDate0", e0."CreationDate" AS "CreationDate0", e0."DeletionDate" AS "DeletionDate0", e0."DocNumber" AS "DocNumber0", e0."Email" AS "Email0", e0."FirstName" AS "FirstName0", e0."IsDeleted" AS "IsDeleted0", e0."JobFunctionCode" AS "JobFunctionCode0", e0."LastName" AS "LastName0", e0."ManagerID" AS "ManagerID0", e0."PasswordHash" AS "PasswordHash0", j0."Code" AS "Code0", j0."HierarchyLevel" AS "HierarchyLevel0", j0."Name" AS "Name0"
+    FROM "Employees" AS e
+    INNER JOIN "JobFunctions" AS j ON e."JobFunctionCode" = j."Code"
+    LEFT JOIN "Employees" AS e0 ON e."ManagerID" = e0."ID"
+    LEFT JOIN "JobFunctions" AS j0 ON e0."JobFunctionCode" = j0."Code"
+    WHERE e."DocNumber" = @__document_0 AND NOT (e."IsDeleted")
+    LIMIT 1
+) AS s
+LEFT JOIN "Phones" AS p ON s."ID" = p."EmployeeID"
+ORDER BY s."ID", s."Code", s."ID0", s."Code0"
+2025-03-17 11:10:14.475 -03:00 [INF] Executed DbCommand (2ms) [Parameters=[@__code_0='?'], CommandType='"Text"', CommandTimeout='30']
+SELECT j."Code", j."HierarchyLevel", j."Name"
+FROM "JobFunctions" AS j
+WHERE j."Code" = @__code_0
+LIMIT 1
+2025-03-17 11:10:14.480 -03:00 [INF] Executed DbCommand (2ms) [Parameters=[@__document_0='?', @__exceptEmployeeId_1='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT EXISTS (
+    SELECT 1
+    FROM "Employees" AS e
+    WHERE e."DocNumber" = @__document_0 AND e."ID" <> @__exceptEmployeeId_1)
+2025-03-17 11:10:14.485 -03:00 [INF] Executed DbCommand (3ms) [Parameters=[@__employee_ID_0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT e0."ID", e0."BirthDate", e0."CreationDate", e0."DeletionDate", e0."DocNumber", e0."Email", e0."FirstName", e0."IsDeleted", e0."JobFunctionCode", e0."LastName", e0."ManagerID", e0."PasswordHash", p."ID", p."EmployeeID", p."Label", p."Number"
+FROM (
+    SELECT e."ID", e."BirthDate", e."CreationDate", e."DeletionDate", e."DocNumber", e."Email", e."FirstName", e."IsDeleted", e."JobFunctionCode", e."LastName", e."ManagerID", e."PasswordHash"
+    FROM "Employees" AS e
+    WHERE e."ID" = @__employee_ID_0
+    LIMIT 1
+) AS e0
+LEFT JOIN "Phones" AS p ON e0."ID" = p."EmployeeID"
+ORDER BY e0."ID"
+2025-03-17 11:10:14.497 -03:00 [INF] Executed DbCommand (5ms) [Parameters=[@p11='?' (DbType = Int32), @p0='?', @p1='?' (DbType = DateTime), @p2='?' (DbType = DateTime), @p3='?', @p4='?', @p5='?', @p6='?' (DbType = Boolean), @p7='?', @p8='?', @p9='?' (DbType = Int32), @p10='?'], CommandType='"Text"', CommandTimeout='30']
+UPDATE "Employees" SET "BirthDate" = @p0, "CreationDate" = @p1, "DeletionDate" = @p2, "DocNumber" = @p3, "Email" = @p4, "FirstName" = @p5, "IsDeleted" = @p6, "JobFunctionCode" = @p7, "LastName" = @p8, "ManagerID" = @p9, "PasswordHash" = @p10
+WHERE "ID" = @p11;
+2025-03-17 11:10:14.500 -03:00 [INF] Executed action Faces.Api.Controllers.EmployeeController.Update (Faces.Api) in 36.5833ms
+2025-03-17 11:10:14.502 -03:00 [INF] Executed endpoint 'Faces.Api.Controllers.EmployeeController.Update (Faces.Api)'
+2025-03-17 11:10:14.504 -03:00 [INF] Request finished HTTP/1.1 PUT http://localhost:25001/api/employee - 200 null application/json 46.8924ms
+2025-03-17 11:10:14.507 -03:00 [INF] Request starting HTTP/1.1 GET http://localhost:25001/api/employee - application/json null
+2025-03-17 11:10:14.509 -03:00 [INF] CORS policy execution successful.
+2025-03-17 11:10:14.511 -03:00 [INF] Executing endpoint 'Faces.Api.Controllers.EmployeeController.Get (Faces.Api)'
+2025-03-17 11:10:14.512 -03:00 [INF] Route matched with {action = "Get", controller = "Employee"}. Executing controller action with signature Microsoft.AspNetCore.Mvc.IActionResult Get() on controller Faces.Api.Controllers.EmployeeController (Faces.Api).
+2025-03-17 11:10:14.518 -03:00 [INF] Executed DbCommand (3ms) [Parameters=[@__document_0='?'], CommandType='"Text"', CommandTimeout='30']
+SELECT s."ID", s."BirthDate", s."CreationDate", s."DeletionDate", s."DocNumber", s."Email", s."FirstName", s."IsDeleted", s."JobFunctionCode", s."LastName", s."ManagerID", s."PasswordHash", s."Code", s."ID0", s."Code0", p."ID", p."EmployeeID", p."Label", p."Number", s."HierarchyLevel", s."Name", s."BirthDate0", s."CreationDate0", s."DeletionDate0", s."DocNumber0", s."Email0", s."FirstName0", s."IsDeleted0", s."JobFunctionCode0", s."LastName0", s."ManagerID0", s."PasswordHash0", s."HierarchyLevel0", s."Name0"
+FROM (
+    SELECT e."ID", e."BirthDate", e."CreationDate", e."DeletionDate", e."DocNumber", e."Email", e."FirstName", e."IsDeleted", e."JobFunctionCode", e."LastName", e."ManagerID", e."PasswordHash", j."Code", j."HierarchyLevel", j."Name", e0."ID" AS "ID0", e0."BirthDate" AS "BirthDate0", e0."CreationDate" AS "CreationDate0", e0."DeletionDate" AS "DeletionDate0", e0."DocNumber" AS "DocNumber0", e0."Email" AS "Email0", e0."FirstName" AS "FirstName0", e0."IsDeleted" AS "IsDeleted0", e0."JobFunctionCode" AS "JobFunctionCode0", e0."LastName" AS "LastName0", e0."ManagerID" AS "ManagerID0", e0."PasswordHash" AS "PasswordHash0", j0."Code" AS "Code0", j0."HierarchyLevel" AS "HierarchyLevel0", j0."Name" AS "Name0"
+    FROM "Employees" AS e
+    INNER JOIN "JobFunctions" AS j ON e."JobFunctionCode" = j."Code"
+    LEFT JOIN "Employees" AS e0 ON e."ManagerID" = e0."ID"
+    LEFT JOIN "JobFunctions" AS j0 ON e0."JobFunctionCode" = j0."Code"
+    WHERE e."DocNumber" = @__document_0 AND NOT (e."IsDeleted")
+    LIMIT 1
+) AS s
+LEFT JOIN "Phones" AS p ON s."ID" = p."EmployeeID"
+ORDER BY s."ID", s."Code", s."ID0", s."Code0"
+2025-03-17 11:10:14.525 -03:00 [INF] Executed DbCommand (4ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT e."ID", e."BirthDate", e."CreationDate", e."DeletionDate", e."DocNumber", e."Email", e."FirstName", e."IsDeleted", e."JobFunctionCode", e."LastName", e."ManagerID", e."PasswordHash", j."Code", e0."ID", j0."Code", p."ID", p."EmployeeID", p."Label", p."Number", j."HierarchyLevel", j."Name", e0."BirthDate", e0."CreationDate", e0."DeletionDate", e0."DocNumber", e0."Email", e0."FirstName", e0."IsDeleted", e0."JobFunctionCode", e0."LastName", e0."ManagerID", e0."PasswordHash", j0."HierarchyLevel", j0."Name"
+FROM "Employees" AS e
+INNER JOIN "JobFunctions" AS j ON e."JobFunctionCode" = j."Code"
+LEFT JOIN "Employees" AS e0 ON e."ManagerID" = e0."ID"
+LEFT JOIN "JobFunctions" AS j0 ON e0."JobFunctionCode" = j0."Code"
+LEFT JOIN "Phones" AS p ON e."ID" = p."EmployeeID"
+WHERE NOT (e."IsDeleted")
+ORDER BY e."ID", j."Code", e0."ID", j0."Code"
+2025-03-17 11:10:14.529 -03:00 [INF] Executed action Faces.Api.Controllers.EmployeeController.Get (Faces.Api) in 15.1808ms
+2025-03-17 11:10:14.530 -03:00 [INF] Executed endpoint 'Faces.Api.Controllers.EmployeeController.Get (Faces.Api)'
+2025-03-17 11:10:14.532 -03:00 [INF] Request finished HTTP/1.1 GET http://localhost:25001/api/employee - 200 null application/json 25.0865ms
+2025-03-17 11:10:16.574 -03:00 [INF] Request starting HTTP/1.1 OPTIONS http://localhost:25001/api/jobfunction - null null
+2025-03-17 11:10:16.577 -03:00 [INF] CORS policy execution successful.
+2025-03-17 11:10:16.578 -03:00 [INF] Request finished HTTP/1.1 OPTIONS http://localhost:25001/api/jobfunction - 204 null null 4.54ms
+2025-03-17 11:10:16.583 -03:00 [INF] Request starting HTTP/1.1 GET http://localhost:25001/api/jobfunction - application/json null
+2025-03-17 11:10:16.587 -03:00 [INF] CORS policy execution successful.
+2025-03-17 11:10:16.588 -03:00 [INF] Executing endpoint 'Faces.Api.Controllers.JobFunctionController.Get (Faces.Api)'
+2025-03-17 11:10:16.590 -03:00 [INF] Route matched with {action = "Get", controller = "JobFunction"}. Executing controller action with signature Microsoft.AspNetCore.Mvc.IActionResult Get() on controller Faces.Api.Controllers.JobFunctionController (Faces.Api).
+2025-03-17 11:10:16.594 -03:00 [INF] Executed DbCommand (2ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT j."Code", j."HierarchyLevel", j."Name"
+FROM "JobFunctions" AS j
+2025-03-17 11:10:16.597 -03:00 [INF] Executed action Faces.Api.Controllers.JobFunctionController.Get (Faces.Api) in 5.1758ms
+2025-03-17 11:10:16.599 -03:00 [INF] Executed endpoint 'Faces.Api.Controllers.JobFunctionController.Get (Faces.Api)'
+2025-03-17 11:10:16.601 -03:00 [INF] Request finished HTTP/1.1 GET http://localhost:25001/api/jobfunction - 200 null application/json 18.2078ms

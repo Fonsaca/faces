@@ -15,6 +15,8 @@ namespace Faces.Database.Repositories
 
         Employee? GetById(int id);
 
+        bool AnyWithDocument(string document, int exceptEmployeeId);
+
         Employee? GetByDocument(string document);
 
         void Create(Employee employee);
@@ -45,7 +47,6 @@ namespace Faces.Database.Repositories
                 .Select(x => x.ConvertToDomain())
                 .ToList();
         }
-
         public Employee? GetById(int id)
         {
             return _context.Employees
@@ -133,6 +134,12 @@ namespace Faces.Database.Repositories
                .Include(x => x.Manager.JobFunction)
                .FirstOrDefault(x => x.DocNumber == document && !x.IsDeleted)
                ?.ConvertToDomain();
+        }
+
+        public bool AnyWithDocument(string document, int exceptEmployeeId)
+        {
+           return _context.Employees
+                .Any(e => e.DocNumber == document && e.ID != exceptEmployeeId);
         }
     }
 }

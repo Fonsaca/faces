@@ -8,6 +8,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Options;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
+using Serilog;
 using System.Text;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -91,10 +92,14 @@ builder.Services.AddCors(options =>
         });
 });
 
+Log.Logger = new LoggerConfiguration()
+    .ReadFrom.Configuration(builder.Configuration)
+    .CreateLogger();
+
+builder.Host.UseSerilog();  
+
 
 var app = builder.Build();
-
-//TODO: LOG
 
 app.UseCors("AllowAll");
 
@@ -111,4 +116,17 @@ app.UseAuthorization();
 
 app.MapControllers();
 
-app.Run();
+
+try
+{
+    Log.Information("Starting up!");
+    app.Run();
+}
+catch (Exception ex)
+{
+    Log.Fatal(ex, "Application start-up failed!");
+}
+finally
+{
+    Log.CloseAndFlush();
+}

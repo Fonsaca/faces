@@ -38,7 +38,6 @@ namespace Faces.Application.Services
             _employeeRepository = employeeRepository;
         }
 
-        //todo unit tests
         public void Create(EmployeeUpdateDto employeeDto)
         {
             var employee = _employeeFactory.CreateFrom(employeeDto);
@@ -47,7 +46,10 @@ namespace Faces.Application.Services
             var authEmployeeCreating = _authenticatedEmployee.Employee!;
 
             employee.ValidateToCreateOrUpdate(authEmployeeCreating);
-            //TODO validate duplicated document
+
+            if (_employeeRepository.AnyWithDocument(employeeDto.DocNumber, 0))
+                throw new ArgumentException("One employee with same document number already exists in the database");
+
             _employeeRepository.Create(employee);
         }
 
@@ -58,6 +60,10 @@ namespace Faces.Application.Services
             var authEmployeeCreating = _authenticatedEmployee.Employee!;
 
             employee.ValidateToCreateOrUpdate(authEmployeeCreating);
+
+            if (_employeeRepository.AnyWithDocument(employeeDto.DocNumber, employeeDto.ID))
+                throw new ArgumentException("One employee with same document number already exists in the database");
+
 
             _employeeRepository.Update(employee);
         }

@@ -186,6 +186,10 @@ namespace Faces.Domain.Entities
 
             if(!isValid)
                 throw new MissingFieldException(message);
+
+
+            if (!IsAgeOfMajority)
+                throw new InvalidOperationException($"An employee must have minimum age of {AGE_OF_MAJORITY}");
         }
 
 
