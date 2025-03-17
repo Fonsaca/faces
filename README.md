@@ -41,10 +41,7 @@ An employee should have the following attributes:
 Before starting the installation, ensure you have the following installed:
 
 - Docker Desktop
-- Visual Studio 2022
 - .NET 8 SDK
-- Angular 19
-- NodeJS
 
 ## 📦 Installation
 
@@ -74,18 +71,21 @@ docker exec -it postgres psql -U admin -f /tmp/create_db.sql
 docker cp ./migration_init.sql postgres:/tmp/migration_init.sql
 
 docker exec -it postgres psql -U admin -f /tmp/migration_init.sql -d Faces
+
 ```
 
 ### Build the Backend Project
 
 ```bash
-dotnet build "Faces.sln"
+dotnet build "Faces.sln" --configuration Release
+
 ```
 
 ### Build .NET API Docker image
 
 ```bash
 docker build -t facesapi .
+
 ```
 
 ### Create Angular Docker image
@@ -94,6 +94,7 @@ docker build -t facesapi .
 cd ../../Web/faces
 
 docker build -t facesweb .
+
 ```
 
 
@@ -102,15 +103,26 @@ docker build -t facesweb .
 docker run --network faces-network --name facesapi -p 25001:8080 -d facesapi
 
 docker run --name facesweb -p 80:80 -d facesweb
+
 ```
 ## 📖 How to Use
 
 ### Login
 
-Log in with the admin user:
+Web Page: http://localhost/
 
+Web Api: http://localhost:25001/
+
+Log in with the admin user:
 - Document: 0001
 - Password: Admin@123
+
+---
+
+## 📖 Out Of Scope
+
+- Job function CRUD.
+- Authorization permission for managing employees. The only validation is the job function hierarchy level: and employee with in higher position can create and modify a lower position employee.
 
 ---
 

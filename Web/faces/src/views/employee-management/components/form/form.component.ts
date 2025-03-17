@@ -121,7 +121,7 @@ export class FormComponent implements OnInit{
     if(form.invalid){
       this.notify.add({
         detail: 'Complete the required fields',
-        severity: 'warning',
+        severity: 'warn',
         summary: 'Warning'
       })
       return;

@@ -171,7 +171,7 @@ namespace Faces.Domain.Entities
         public void ValidateToCreateOrUpdate(Employee authEmployeeCreating)
         {
             if (!authEmployeeCreating.HasGreaterOrEqualHierarchyJobFunction(this))
-                throw new UnauthorizedAccessException($"You can't create an employee with high priveleges");
+                throw new UnauthorizedAccessException($"You can't create an employee with higher priveleges");
 
             bool isValid;
             string message;
