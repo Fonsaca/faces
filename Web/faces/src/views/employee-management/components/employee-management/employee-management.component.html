@@ -1,0 +1,43 @@
+<h3>EMPLOYEES</h3>
+
+<p-table [value]="employees" [tableStyle]="{ 'min-width': '50rem' }">
+    <ng-template #header>
+        <tr>
+            <th>Document</th>
+            <th>Name</th>
+            <th>Email</th>
+            <th class="actions-col">Actions
+
+                <loading *ngIf="loading()"></loading>
+                <button  *ngIf="!loading()" pButton class="p-success ml-2" (click)="showingFormsModal = true">New <fa-icon [icon]="iconNew"></fa-icon> </button>
+            </th>
+        </tr>
+    </ng-template>
+    <ng-template #body let-employee>
+        <tr>
+            <td>{{ employee.docNumber }}</td>
+            <td>{{ employee.fullName }}</td>
+            <td>{{ employee.email }}</td>
+            <td class="actions-col">
+                <button pButton class="p-button-info" >Edit <fa-icon [icon]="iconEdit"></fa-icon> </button>
+            
+                <button pButton class="p-button-danger ml-2">Delete <fa-icon [icon]="iconDelete"></fa-icon> </button>
+            </td>
+        </tr>
+    </ng-template>
+</p-table>
+
+<p-dialog [(visible)]="showingFormsModal" [modal]="true" [dismissableMask]="false">
+    <ng-template #header>
+      <h4 class="mb-0">NEW</h4>
+    </ng-template>
+
+
+    <div class="modal-content">
+
+        <emp-man-form></emp-man-form>
+
+
+    </div>
+
+</p-dialog>

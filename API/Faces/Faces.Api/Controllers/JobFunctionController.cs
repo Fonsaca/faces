@@ -1,13 +1,15 @@
 
 
 using Faces.Application.Services;
+using Faces.Domain.Entities;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using System.Net;
 
 namespace Faces.Api.Controllers
 {
     [ApiController]
-    [Route("[controller]")]
+    [Route("api/[controller]")]
     [Authorize]
     public class JobFunctionController : ControllerBase
     {
@@ -25,7 +27,7 @@ namespace Faces.Api.Controllers
         [HttpGet()]
         public IActionResult Get()
         {
-            return base.Ok(_jobFunctionService.GetAll());
+            return new ApiResponse<JobFunction>(HttpStatusCode.OK, string.Empty, _jobFunctionService.GetAll());
         }
     }
 }

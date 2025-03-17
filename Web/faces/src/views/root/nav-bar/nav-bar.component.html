@@ -1,0 +1,15 @@
+<nav class="w-full flex align-items-center justify-content-between">
+
+    <strong class="logo ml-3">FACES</strong>
+    @if (employee) {
+        <a class="mr-3" (click)="signOut()">
+            <fa-icon [icon]="iconUser"></fa-icon>
+            {{employee.fullName}}
+            <fa-icon [icon]="iconSignOut" class="ml-1" ></fa-icon>
+        </a>
+    } @else{
+        <div></div>
+    }
+
+
+</nav>

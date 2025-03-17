@@ -1,8 +1,11 @@
 ﻿using Faces.Application.DTOs;
 using Faces.Application.Services;
+using Faces.Domain.Entities;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using System.Net;
+using System.Reflection.Metadata;
 
 namespace Faces.Api.Controllers
 {
@@ -24,13 +27,14 @@ namespace Faces.Api.Controllers
         [HttpGet()]
         public IActionResult Get()
         {
-            return base.Ok(_employeeService.GetAll());
+            return new ApiResponse<Employee>(HttpStatusCode.OK, string.Empty, _employeeService.GetAll());
         }
 
-        [HttpGet("{id:int}")]
-        public IActionResult GetById(int id)
+        [HttpGet("{document}")]
+        public IActionResult GetByDocument(string document)
         {
-            return base.Ok(_employeeService.GetById(id));
+
+            return new ApiResponse<Employee?>(HttpStatusCode.OK, string.Empty, _employeeService.GetByDocument(document));
         }
 
         [HttpPost()]
@@ -39,12 +43,12 @@ namespace Faces.Api.Controllers
             try
             {
                 _employeeService.Create(employeeUpdate);
-                return Created();
+                return new ApiResponse<object>(HttpStatusCode.Created);
             }
             catch (Exception ex)
             {
                 _logger.LogError(ex, "Failed to create the employee", employeeUpdate);
-                return BadRequest(ex.Message);
+                return new ApiResponse<object>(HttpStatusCode.Created, ex.Message);
             }
         }
 
@@ -54,12 +58,13 @@ namespace Faces.Api.Controllers
             try
             {
                 _employeeService.Update(employeeUpdate);
-                return Ok();
+                return new ApiResponse<object>(HttpStatusCode.OK);
             }
             catch (Exception ex)
             {
                 _logger.LogError(ex, "Failed to update the employee", employeeUpdate);
-                return BadRequest(ex.Message);
+                return new ApiResponse<object>(HttpStatusCode.BadRequest, ex.Message);
+ 
             }
         }
 
@@ -69,12 +74,12 @@ namespace Faces.Api.Controllers
             try
             {
                 _employeeService.Delete(id);
-                return Ok();
+                return new ApiResponse<object>(HttpStatusCode.OK);
             }
             catch (Exception ex)
             {
                 _logger.LogError(ex, "Failed to delete the employee", id);
-                return BadRequest(ex.Message);
+                return new ApiResponse<object>(HttpStatusCode.BadRequest, ex.Message);
             }
         }
 

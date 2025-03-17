@@ -1,0 +1,32 @@
+<form class="flex flex-column w-full pt-5" [formGroup]="form">
+
+    <p-floatlabel class="w-full">
+        <input pInputText id="doc-number" autocomplete="off" formControlName="docNumber" />
+        <label for="doc-number">Document Number</label>
+    </p-floatlabel>
+
+    <p-floatlabel class="w-full mt-5">
+        <input pInputText id="first-name" autocomplete="off" formControlName="firstName" />
+        <label for="first-name">First Name</label>
+    </p-floatlabel>
+    
+    <p-floatlabel class="w-full mt-5">
+        <input pInputText id="last-name" autocomplete="off" formControlName="lastName" />
+        <label for="last-name">Last Name</label>
+    </p-floatlabel>
+    
+    <p-floatlabel class="w-full mt-5">
+        <input pInputText id="email" autocomplete="off" formControlName="email" />
+        <label for="email">Email</label>
+    </p-floatlabel>
+
+    <p-floatlabel class="w-full mt-5">
+        <input pInputText id="birth-date" autocomplete="off" formControlName="birthDate" />
+        <label for="birth-date">Birth Date</label>
+    </p-floatlabel>
+
+    <p-floatlabel class="w-full mt-5">
+        <p-select [options]="jobFunctions" optionLabel="name" placeholder="__________" class="w-full md:w-56" />
+        <label >Job Function</label>
+    </p-floatlabel>
+</form>

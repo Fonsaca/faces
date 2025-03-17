@@ -1,0 +1,22 @@
+
+
+
+<div class="page w-full flex align-items-center justify-content-center">
+    <form [formGroup]="form" class="panel flex flex-column pt-5 justify-content-center pl-5 pr-5 align-items-end" (ngSubmit)="login(form.value)">
+        
+        <p-floatlabel class="w-full">
+            <input pInputText id="doc-number" autocomplete="off" formControlName="document" />
+            <label for="doc-number">Document Number</label>
+        </p-floatlabel>
+
+        <p-floatlabel class="mt-5 w-full">
+            <input pInputText id="psw" autocomplete="off" type="password" formControlName="password" />
+            <label for="psw">Password</label>
+        </p-floatlabel>
+
+        <button *ngIf="!loading()" pButton class="p-success mt-2" type="submit">Sign In <fa-icon [icon]="signInIcon"></fa-icon> </button>
+
+        
+        <loading *ngIf="loading()"></loading>
+    </form>
+</div>

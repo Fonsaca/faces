@@ -5,6 +5,7 @@ using Faces.Authentication.Services;
 using Faces.Database.EF;
 using Faces.Database.Repositories;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Options;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
 using System.Text;
@@ -12,6 +13,10 @@ using System.Text;
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
+
+
+builder.Services.AddHttpContextAccessor();
+
 builder.Services.AddDbContext<FacesDbContext>(options =>
     options.UseNpgsql(builder.Configuration.GetConnectionString("DefaultConnection")));
 builder.Services.AddTransient<IJobFunctionService, JobFunctionService>();
@@ -73,15 +78,29 @@ builder.Services.AddSwaggerGen(options =>
 });
 
 
+var allowedOrigins = builder.Configuration.GetSection("AllowedHosts").Get<string[]>()!;
+
+builder.Services.AddCors(options =>
+{
+    options.AddPolicy("AllowAll",
+        policy =>
+        {
+            policy.WithOrigins(allowedOrigins)
+                  .AllowAnyHeader()
+                  .AllowAnyMethod();
+        });
+});
+
+
 var app = builder.Build();
 
 //TODO: LOG
 
-// Configure the HTTP request pipeline.
+app.UseCors("AllowAll");
+
 app.UseSwagger();
 
 app.UseSwaggerUI();
-
 
 app.UseHttpsRedirection();
 

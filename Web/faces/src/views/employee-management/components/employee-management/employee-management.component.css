@@ -1,0 +1,15 @@
+
+.actions-col{
+    width: 12rem;
+}
+
+.actions-col > button{
+    font-size: .8em;
+}
+
+.modal-content{
+    width: 600px;
+
+    max-width: 90vw;
+}
+

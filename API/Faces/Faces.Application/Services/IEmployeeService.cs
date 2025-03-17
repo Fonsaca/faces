@@ -10,7 +10,7 @@ namespace Faces.Application.Services
 
         List<Employee> GetAll(); //TODO pagination
 
-        Employee? GetById(int id);
+        Employee? GetByDocument(string document);
 
         void Create(EmployeeUpdateDto employeeDto);
         
@@ -66,7 +66,7 @@ namespace Faces.Application.Services
 
         public List<Employee> GetAll() => _employeeRepository.GetAll();
 
-        public Employee? GetById(int id) => _employeeRepository.GetById(id);
+        public Employee? GetByDocument(string document) => _employeeRepository.GetByDocument(document);
 
        
     }
