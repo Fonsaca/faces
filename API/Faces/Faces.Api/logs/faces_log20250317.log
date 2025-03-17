@@ -597,3 +597,63 @@ FROM "JobFunctions" AS j
 2025-03-17 11:10:16.597 -03:00 [INF] Executed action Faces.Api.Controllers.JobFunctionController.Get (Faces.Api) in 5.1758ms
 2025-03-17 11:10:16.599 -03:00 [INF] Executed endpoint 'Faces.Api.Controllers.JobFunctionController.Get (Faces.Api)'
 2025-03-17 11:10:16.601 -03:00 [INF] Request finished HTTP/1.1 GET http://localhost:25001/api/jobfunction - 200 null application/json 18.2078ms
+2025-03-17 12:31:02.885 -03:00 [ERR] An error occurred using the connection to database 'Faces' on server 'tcp://localhost:25003'.
+2025-03-17 12:31:03.548 -03:00 [INF] Executed DbCommand (422ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+CREATE DATABASE "Faces";
+2025-03-17 12:31:03.758 -03:00 [INF] Executed DbCommand (9ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+CREATE TABLE IF NOT EXISTS "__EFMigrationsHistory" (
+    "MigrationId" character varying(150) NOT NULL,
+    "ProductVersion" character varying(32) NOT NULL,
+    CONSTRAINT "PK___EFMigrationsHistory" PRIMARY KEY ("MigrationId")
+);
+2025-03-17 12:31:03.769 -03:00 [INF] Acquiring an exclusive lock for migration application. See https://aka.ms/efcore-docs-migrations-lock for more information if this takes too long.
+2025-03-17 12:31:03.772 -03:00 [INF] Executed DbCommand (3ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+LOCK TABLE "__EFMigrationsHistory" IN ACCESS EXCLUSIVE MODE
+2025-03-17 12:31:03.777 -03:00 [INF] Executed DbCommand (4ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT "MigrationId", "ProductVersion"
+FROM "__EFMigrationsHistory"
+ORDER BY "MigrationId";
+2025-03-17 13:30:04.604 -03:00 [INF] Starting up!
+2025-03-17 13:30:04.775 -03:00 [INF] User profile is available. Using 'C:\Users\gabri\AppData\Local\ASP.NET\DataProtection-Keys' as key repository and Windows DPAPI to encrypt keys at rest.
+2025-03-17 13:30:05.405 -03:00 [INF] Now listening on: http://localhost:25001
+2025-03-17 13:30:05.493 -03:00 [INF] Request starting HTTP/1.1 GET http://localhost:25001/swagger/index.html - null null
+2025-03-17 13:30:05.618 -03:00 [INF] Application started. Press Ctrl+C to shut down.
+2025-03-17 13:30:05.636 -03:00 [INF] Hosting environment: Development
+2025-03-17 13:30:05.651 -03:00 [INF] Content root path: D:\Git\faces\API\Faces\Faces.Api
+2025-03-17 13:30:06.413 -03:00 [INF] Request finished HTTP/1.1 GET http://localhost:25001/swagger/index.html - 200 null text/html;charset=utf-8 935.6535ms
+2025-03-17 13:30:06.514 -03:00 [INF] Request starting HTTP/1.1 GET http://localhost:25001/swagger/index.html - null null
+2025-03-17 13:30:06.530 -03:00 [INF] Request finished HTTP/1.1 GET http://localhost:25001/swagger/index.html - 200 null text/html;charset=utf-8 16.3884ms
+2025-03-17 13:30:06.590 -03:00 [INF] Request starting HTTP/1.1 GET http://localhost:25001/_vs/browserLink - null null
+2025-03-17 13:30:06.591 -03:00 [INF] Request starting HTTP/1.1 GET http://localhost:25001/_framework/aspnetcore-browser-refresh.js - null null
+2025-03-17 13:30:06.615 -03:00 [INF] Request finished HTTP/1.1 GET http://localhost:25001/_framework/aspnetcore-browser-refresh.js - 200 13754 application/javascript; charset=utf-8 23.2698ms
+2025-03-17 13:30:06.630 -03:00 [INF] Request starting HTTP/1.1 GET http://localhost:25001/_framework/aspnetcore-browser-refresh.js - null null
+2025-03-17 13:30:06.636 -03:00 [INF] Request finished HTTP/1.1 GET http://localhost:25001/_framework/aspnetcore-browser-refresh.js - 200 13754 application/javascript; charset=utf-8 5.5234ms
+2025-03-17 13:30:06.683 -03:00 [INF] Request finished HTTP/1.1 GET http://localhost:25001/_vs/browserLink - 200 null text/javascript; charset=UTF-8 93.4579ms
+2025-03-17 13:30:06.684 -03:00 [INF] Request starting HTTP/1.1 GET http://localhost:25001/_vs/browserLink - null null
+2025-03-17 13:30:06.717 -03:00 [INF] Request finished HTTP/1.1 GET http://localhost:25001/_vs/browserLink - 200 null text/javascript; charset=UTF-8 32.7195ms
+2025-03-17 13:30:06.763 -03:00 [INF] Request starting HTTP/1.1 GET http://localhost:25001/swagger/v1/swagger.json - null null
+2025-03-17 13:30:06.972 -03:00 [INF] Request finished HTTP/1.1 GET http://localhost:25001/swagger/v1/swagger.json - 200 null application/json;charset=utf-8 209.4673ms
+2025-03-17 13:30:06.974 -03:00 [INF] Request starting HTTP/1.1 GET http://localhost:25001/swagger/v1/swagger.json - null null
+2025-03-17 13:30:06.985 -03:00 [INF] Request finished HTTP/1.1 GET http://localhost:25001/swagger/v1/swagger.json - 200 null application/json;charset=utf-8 10.2972ms
+2025-03-17 13:30:18.043 -03:00 [INF] Request starting HTTP/1.1 POST http://localhost:25001/api/Authentication - application/json 51
+2025-03-17 13:30:18.057 -03:00 [INF] CORS policy execution failed.
+2025-03-17 13:30:18.059 -03:00 [INF] Request origin http://localhost:25001 does not have permission to access the resource.
+2025-03-17 13:30:18.063 -03:00 [WRN] Failed to determine the https port for redirect.
+2025-03-17 13:30:19.641 -03:00 [INF] Executing endpoint 'Faces.Api.Controllers.AuthenticationController.Post (Faces.Api)'
+2025-03-17 13:30:19.682 -03:00 [INF] Route matched with {action = "Post", controller = "Authentication"}. Executing controller action with signature Microsoft.AspNetCore.Mvc.IActionResult Post(Faces.Authentication.DTOs.Credentials) on controller Faces.Api.Controllers.AuthenticationController (Faces.Api).
+2025-03-17 13:30:23.060 -03:00 [INF] Executed DbCommand (87ms) [Parameters=[@__document_0='?'], CommandType='"Text"', CommandTimeout='30']
+SELECT s."ID", s."BirthDate", s."CreationDate", s."DeletionDate", s."DocNumber", s."Email", s."FirstName", s."IsDeleted", s."JobFunctionCode", s."LastName", s."ManagerID", s."PasswordHash", s."Code", s."ID0", s."Code0", p."ID", p."EmployeeID", p."Label", p."Number", s."HierarchyLevel", s."Name", s."BirthDate0", s."CreationDate0", s."DeletionDate0", s."DocNumber0", s."Email0", s."FirstName0", s."IsDeleted0", s."JobFunctionCode0", s."LastName0", s."ManagerID0", s."PasswordHash0", s."HierarchyLevel0", s."Name0"
+FROM (
+    SELECT e."ID", e."BirthDate", e."CreationDate", e."DeletionDate", e."DocNumber", e."Email", e."FirstName", e."IsDeleted", e."JobFunctionCode", e."LastName", e."ManagerID", e."PasswordHash", j."Code", j."HierarchyLevel", j."Name", e0."ID" AS "ID0", e0."BirthDate" AS "BirthDate0", e0."CreationDate" AS "CreationDate0", e0."DeletionDate" AS "DeletionDate0", e0."DocNumber" AS "DocNumber0", e0."Email" AS "Email0", e0."FirstName" AS "FirstName0", e0."IsDeleted" AS "IsDeleted0", e0."JobFunctionCode" AS "JobFunctionCode0", e0."LastName" AS "LastName0", e0."ManagerID" AS "ManagerID0", e0."PasswordHash" AS "PasswordHash0", j0."Code" AS "Code0", j0."HierarchyLevel" AS "HierarchyLevel0", j0."Name" AS "Name0"
+    FROM "Employees" AS e
+    INNER JOIN "JobFunctions" AS j ON e."JobFunctionCode" = j."Code"
+    LEFT JOIN "Employees" AS e0 ON e."ManagerID" = e0."ID"
+    LEFT JOIN "JobFunctions" AS j0 ON e0."JobFunctionCode" = j0."Code"
+    WHERE e."DocNumber" = @__document_0 AND NOT (e."IsDeleted")
+    LIMIT 1
+) AS s
+LEFT JOIN "Phones" AS p ON s."ID" = p."EmployeeID"
+ORDER BY s."ID", s."Code", s."ID0", s."Code0"
+2025-03-17 13:30:23.554 -03:00 [INF] Executed action Faces.Api.Controllers.AuthenticationController.Post (Faces.Api) in 3863.4005ms
+2025-03-17 13:30:23.557 -03:00 [INF] Executed endpoint 'Faces.Api.Controllers.AuthenticationController.Post (Faces.Api)'
+2025-03-17 13:30:23.575 -03:00 [INF] Request finished HTTP/1.1 POST http://localhost:25001/api/Authentication - 200 null application/json 5532.1259ms

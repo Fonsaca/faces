@@ -88,10 +88,16 @@ namespace Faces.Database.Migrations
                 values: new object[,]
                 {
                     { "0001", (short)1000, "RH Manager" },
-                    { "0002", (short)1000, "Tech Leader" },
-                    { "0003", (short)100, "Analyst" },
-                    { "0004", (short)1, "Intern" }
+                    { "0002", (short)500, "RH Analyst" },
+                    { "0003", (short)500, "Tech Leader" },
+                    { "0004", (short)100, "IT Analyst" },
+                    { "0005", (short)1, "Intern" }
                 });
+
+            migrationBuilder.InsertData(
+                table: "Employees",
+                columns: new[] { "ID", "BirthDate", "CreationDate", "DeletionDate", "DocNumber", "Email", "FirstName", "IsDeleted", "JobFunctionCode", "LastName", "ManagerID", "PasswordHash" },
+                values: new object[] { -1, "1990-01-01", new DateTime(2025, 3, 17, 14, 35, 0, 0, DateTimeKind.Utc), null, "0001", "admin.rh@faces.com", "RH", false, "0001", "Admin", null, "i+rcXhRFTdUTkNVTJ07ydQ==.HXcBql16eQsd/uam7bZdKvPhAIAotA8kbwx7FBsrRBc=" });
 
             migrationBuilder.CreateIndex(
                 name: "IX_Employees_DocNumber",

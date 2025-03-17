@@ -90,13 +90,13 @@ namespace Faces.Database.Migrations
                         {
                             ID = -1,
                             BirthDate = "1990-01-01",
-                            CreationDate = new DateTime(2025, 3, 14, 23, 35, 0, 0, DateTimeKind.Utc),
-                            DocNumber = "99999999999",
+                            CreationDate = new DateTime(2025, 3, 17, 14, 35, 0, 0, DateTimeKind.Utc),
+                            DocNumber = "0001",
                             Email = "admin.rh@faces.com",
-                            FirstName = "admin",
+                            FirstName = "RH",
                             IsDeleted = false,
                             JobFunctionCode = "0001",
-                            LastName = "Rh",
+                            LastName = "Admin",
                             PasswordHash = "i+rcXhRFTdUTkNVTJ07ydQ==.HXcBql16eQsd/uam7bZdKvPhAIAotA8kbwx7FBsrRBc="
                         });
                 });
@@ -129,18 +129,24 @@ namespace Faces.Database.Migrations
                         new
                         {
                             Code = "0002",
-                            HierarchyLevel = (short)1000,
-                            Name = "Tech Leader"
+                            HierarchyLevel = (short)500,
+                            Name = "RH Analyst"
                         },
                         new
                         {
                             Code = "0003",
-                            HierarchyLevel = (short)100,
-                            Name = "Analyst"
+                            HierarchyLevel = (short)500,
+                            Name = "Tech Leader"
                         },
                         new
                         {
                             Code = "0004",
+                            HierarchyLevel = (short)100,
+                            Name = "IT Analyst"
+                        },
+                        new
+                        {
+                            Code = "0005",
                             HierarchyLevel = (short)1,
                             Name = "Intern"
                         });

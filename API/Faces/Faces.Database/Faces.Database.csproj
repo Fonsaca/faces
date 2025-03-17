@@ -10,6 +10,10 @@
   <ItemGroup>
 	  <InternalsVisibleTo Include="Faces.Api" />
 	  <PackageReference Include="Microsoft.EntityFrameworkCore" Version="9.0.3" />
+	  <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="9.0.3">
+	    <PrivateAssets>all</PrivateAssets>
+	    <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+	  </PackageReference>
 	  <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="9.0.3">
 	    <PrivateAssets>all</PrivateAssets>
 	    <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
@@ -18,6 +22,10 @@
     <ProjectReference Include="..\Faces.Domain\Faces.Domain.csproj" />
 
 	  <InternalsVisibleTo Include="Faces.Api" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Migrations\" />
   </ItemGroup>
 
 </Project>

@@ -1,6 +1,6 @@
 # FACES
 
-![Badge](https://img.shields.io/badge/Status-In%20Development-orange)
+
 
 Fictional Administration of Company Employees (FACES)
 
@@ -29,39 +29,88 @@ An employee should have the following attributes:
 - .NET 8
 - Angular
 - PostgreSQL
+- Docker
 - Entity Framework
 - Serilog
 - PrimeNg
 - Jwt
+- Font Awesome Icons
+
+## 📦 Requirements before Installation
+
+Before starting the installation, ensure you have the following installed:
+
+- Docker Desktop
+- Visual Studio 2022
+- .NET 8 SDK
+- Angular 19
+- NodeJS
 
 ## 📦 Installation
 
-### Download latest postgres docker image
+### Create a docker network
+
+```bash
+docker network create faces-network
+```
+
+### Download latest PostgreSQL Docker image and Run
+
+```bash
 docker pull postgres
 
+docker run --network faces-network --name postgres -e POSTGRES_USER=admin -e POSTGRES_PASSWORD=admin -p 25003:5432 -d postgres 
+```
 
-### Build .NET API
+### Create the database
+
+```bash
+cd ./API/Faces
+
+docker cp ./create_db.sql postgres:/tmp/create_db.sql
+
+docker exec -it postgres psql -U admin -f /tmp/create_db.sql
+
+docker cp ./migration_init.sql postgres:/tmp/migration_init.sql
+
+docker exec -it postgres psql -U admin -f /tmp/migration_init.sql -d Faces
+```
+
+### Build the Backend Project
+
+```bash
+dotnet build "Faces.sln"
+```
+
+### Build .NET API Docker image
+
+```bash
+docker build -t facesapi .
+```
+
+### Create Angular Docker image
+
+```bash
+cd ../../Web/faces
+
+docker build -t facesweb .
+```
 
 
-### Build Angular App
+### Run
+```bash
+docker run --network faces-network --name facesapi -p 25001:8080 -d facesapi
 
-
-
+docker run --name facesweb -p 80:80 -d facesweb
+```
 ## 📖 How to Use
 
-### Run API
-docker run --name facesapi -p 80:8080 -d facesapi
+### Login
 
+Log in with the admin user:
 
-### Run postgres
-docker run --name postgres -e POSTGRES_USER=admin -e POSTGRES_PASSWORD=admin -p 25100:5432 -d postgres
-
-
-## ✅ Tests
-
-### TODO
-
-- Add test execution details.
+- Document: 0001
+- Password: Admin@123
 
 ---
 

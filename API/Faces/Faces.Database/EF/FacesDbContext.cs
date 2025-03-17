@@ -28,18 +28,19 @@ namespace Faces.Database.EF
 
             var functions = new List<DbJobFunction> {
                         rhFunction.ConvertToDbModel(),
-                        new JobFunction("0002", "Tech Leader", 1000).ConvertToDbModel(),
-                        new JobFunction("0003", "Analyst", 100).ConvertToDbModel(),
-                        new JobFunction("0004", "Intern", 1).ConvertToDbModel()
+                        new JobFunction("0002", "RH Analyst", 500).ConvertToDbModel(),
+                        new JobFunction("0003", "Tech Leader", 500).ConvertToDbModel(),
+                        new JobFunction("0004", "IT Analyst", 100).ConvertToDbModel(),
+                        new JobFunction("0005", "Intern", 1).ConvertToDbModel()
                     };
 
             var adminEmployee = new Employee()
             {
-                FirstName = "admin",
-                LastName = "Rh",
+                FirstName = "RH",
+                LastName = "Admin",
                 Email = "admin.rh@faces.com",
                 BirthDate = DateOnly.Parse("1990-01-01"),
-                DocNumber = "99999999999",
+                DocNumber = "0001",
                 JobFunction = rhFunction
             };
 
