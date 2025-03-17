@@ -48,7 +48,7 @@ namespace Faces.Api.Controllers
             catch (Exception ex)
             {
                 _logger.LogError(ex, "Failed to create the employee", employeeUpdate);
-                return new ApiResponse<object>(HttpStatusCode.Created, ex.Message);
+                return new ApiResponse<object>(HttpStatusCode.BadRequest, ex.Message);
             }
         }
 

@@ -13,6 +13,7 @@ import { FloatLabelModule } from 'primeng/floatlabel';
 import { InputTextModule } from 'primeng/inputtext';
 import { LoadingComponent } from "../../shared/components/loading/loading.component";
 import { SelectModule } from 'primeng/select';
+import { DatePickerModule } from 'primeng/datepicker';
 
 @NgModule({
   declarations: [
@@ -31,7 +32,8 @@ import { SelectModule } from 'primeng/select';
     FloatLabelModule,
     InputTextModule,
     LoadingComponent,
-    SelectModule
+    SelectModule,
+    DatePickerModule
 ]
 })
 export class EmployeeManagementModule { }

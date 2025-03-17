@@ -1,1 +1,20 @@
-<p>delete-modal works!</p>
+
+<p-dialog [(visible)]="modalVisibility" [modal]="true" [dismissableMask]="false">
+    <ng-template #header>
+      <h4 class="mb-0">DELETE EMPLOYEE</h4>
+    </ng-template>
+
+
+    <div class="modal-content">
+
+        <h4>Are you sure that you want to delete the employee {{employee?.fullName}} ?</h4>
+
+        <div class="w-full flex justify-content-end">
+            <button pButton (click)="deleteEmployee(employee!.id)">
+                Confirm
+                <fa-icon [icon]="iconConfirm"></fa-icon>
+            </button>
+        </div>
+    </div>
+
+</p-dialog>

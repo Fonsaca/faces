@@ -1,5 +1,5 @@
 import { Component, OnDestroy, OnInit, signal } from '@angular/core';
-import { Employee } from '../../../../shared/models/Employee';
+import { Employee } from '../../../../shared/models/employee';
 import { EmployeeApiService } from '../../../../api-services/employee-api.service';
 import { Subject } from 'rxjs';
 import { PromiseState } from '../../../../shared/PromiseState';
@@ -30,13 +30,28 @@ export class EmployeeManagementComponent implements OnInit{
 
   showingFormsModal = false;
 
+  showingDeleteModal = false;
+
+  selectedDeleteEmployee?: Employee;
+
+  selectedFormsEmployee?: Employee;
+
   async ngOnInit(): Promise<void> {
     await this.requestEmployees();
   }
 
+  openFormsModal(employee?: Employee){
+    this.selectedFormsEmployee = employee;
+    this.showingFormsModal = true;
+  }
+
+  openDeleteModal(employee: Employee){
+    this.selectedDeleteEmployee = employee;
+    this.showingDeleteModal = true;
+  }
 
 
-  private async requestEmployees() : Promise<void>{
+  async requestEmployees() : Promise<void>{
 
     var request = new PromiseState(this.employeeApi.getEmployees())
 

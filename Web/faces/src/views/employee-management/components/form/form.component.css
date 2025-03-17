@@ -2,3 +2,7 @@
 input{
     width: 100%;
 }
+
+.add-btn{
+    font-size: .75em;
+}

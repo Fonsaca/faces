@@ -41,6 +41,8 @@ namespace Faces.Database.EF
         {
             this.IsDeleted = false;
             CreationDate = DateTime.Now;
+            Manager = null;
+            JobFunction = null;
         }
 
         internal void SetDeleted()
@@ -67,7 +69,8 @@ namespace Faces.Database.EF
                 JobFunction = entity.JobFunction.ConvertToDomain(),
             };
 
-            employee.Phones.AddRange(entity.Phones.Select(p => p.ConvertToDomain()));
+            if(entity.Phones != null)
+                employee.Phones.AddRange(entity.Phones.Select(p => p.ConvertToDomain()));
 
             if (entity.Manager != null)
                 employee.Manager = entity.Manager!.ConvertToDomain();

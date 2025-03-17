@@ -6,9 +6,9 @@ import { FloatLabelModule } from 'primeng/floatlabel';
 import { ButtonModule } from 'primeng/button';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome'
 import { faRightToBracket } from '@fortawesome/free-solid-svg-icons'
-import { AuthenticationApiService, FacesCredential } from '../../../../api-services/authentication-api.service';
-import { LoginService } from '../../../../shared/services/login.service';
-import { LoadingComponent } from '../../../../shared/components/loading/loading.component';
+import { AuthenticationApiService, FacesCredential } from '../../../api-services/authentication-api.service';
+import { LoginService } from '../../../shared/services/login.service';
+import { LoadingComponent } from '../../../shared/components/loading/loading.component';
 
 @Component({
   selector: 'login',

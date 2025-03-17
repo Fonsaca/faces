@@ -8,7 +8,7 @@ namespace Faces.Application.Services
     public interface IEmployeeService
     {
 
-        List<Employee> GetAll(); //TODO pagination
+        List<Employee> GetAll();
 
         Employee? GetByDocument(string document);
 
@@ -47,7 +47,7 @@ namespace Faces.Application.Services
             var authEmployeeCreating = _authenticatedEmployee.Employee!;
 
             employee.ValidateToCreateOrUpdate(authEmployeeCreating);
-
+            //TODO validate duplicated document
             _employeeRepository.Create(employee);
         }
 

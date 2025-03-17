@@ -19,7 +19,6 @@ export class JobFunctionApiService {
     const request = this.httpClient.get(url)
       .pipe(map((response : any) => {
 
-        console.log(response)
 
         if(response?.statusCode != 200)
           throw response

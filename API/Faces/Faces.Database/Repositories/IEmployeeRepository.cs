@@ -40,7 +40,7 @@ namespace Faces.Database.Repositories
             return _context.Employees
                 .Include(x => x.Phones)
                 .Include(x => x.JobFunction)
-                .Include(x => x.Manager)
+                .Include(x => x.Manager.JobFunction)
                 .Where(x => !x.IsDeleted)
                 .Select(x => x.ConvertToDomain())
                 .ToList();
@@ -51,7 +51,7 @@ namespace Faces.Database.Repositories
             return _context.Employees
                 .Include(x => x.Phones)
                 .Include(x => x.JobFunction)
-                .Include(x => x.Manager)
+                .Include(x => x.Manager.JobFunction)
                 .Where(x => x.ID == id && !x.IsDeleted)
                 .Select(x => x.ConvertToDomain())
                 .FirstOrDefault();
@@ -130,7 +130,7 @@ namespace Faces.Database.Repositories
             return _context.Employees
                .Include(x => x.Phones)
                .Include(x => x.JobFunction)
-               .Include(x => x.Manager)
+               .Include(x => x.Manager.JobFunction)
                .FirstOrDefault(x => x.DocNumber == document && !x.IsDeleted)
                ?.ConvertToDomain();
         }

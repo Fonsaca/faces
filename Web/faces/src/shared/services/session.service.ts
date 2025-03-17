@@ -1,9 +1,7 @@
 import { inject, Injectable, WritableSignal } from '@angular/core';
 import { Router } from '@angular/router';
 import { BehaviorSubject, Observable, skip } from 'rxjs';
-import { Employee } from '../models/Employee';
-import { EmployeeApiService } from '../../api-services/employee-api.service';
-import { PromiseState } from '../PromiseState';
+import { Employee } from '../models/employee';
 
 @Injectable({
   providedIn: 'root'
@@ -37,10 +35,8 @@ export class SessionService {
 
     const decoded = this.decodeJWT(token);
 
-    console.log(decoded)
-    
 
-    return new Date() > new Date(decoded.exp); //TODO validate jwt
+    return new Date() > new Date(decoded.exp);
   }
 
   decodeJWT(token: string) : { sub: string, name: string, exp: number} {

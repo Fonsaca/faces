@@ -163,14 +163,14 @@ namespace Faces.Domain.Entities
 
  
 
-        public bool HasGreaterHierarchyJobFunction(Employee employeeToCreate)
+        public bool HasGreaterOrEqualHierarchyJobFunction(Employee employeeToCreate)
         {
-            return this.JobFunction.HierarchyLevel > employeeToCreate.JobFunction.HierarchyLevel;
+            return this.JobFunction.HierarchyLevel >= employeeToCreate.JobFunction.HierarchyLevel;
         }
 
         public void ValidateToCreateOrUpdate(Employee authEmployeeCreating)
         {
-            if (!authEmployeeCreating.HasGreaterHierarchyJobFunction(this))
+            if (!authEmployeeCreating.HasGreaterOrEqualHierarchyJobFunction(this))
                 throw new UnauthorizedAccessException($"You can't create an employee with high priveleges");
 
             bool isValid;

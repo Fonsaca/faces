@@ -1,7 +1,7 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { faCaretLeft, faTimesCircle, faUser } from '@fortawesome/free-solid-svg-icons';
-import { Employee } from '../../../shared/models/Employee';
+import { Employee } from '../../../shared/models/employee';
 import { Subject, takeUntil } from 'rxjs';
 import { SessionService } from '../../../shared/services/session.service';
 

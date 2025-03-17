@@ -1,32 +1,80 @@
-<form class="flex flex-column w-full pt-5" [formGroup]="form">
+<form class="flex flex-column w-full pt-5" [formGroup]="form" (ngSubmit)="save(form)">
 
     <p-floatlabel class="w-full">
         <input pInputText id="doc-number" autocomplete="off" formControlName="docNumber" />
-        <label for="doc-number">Document Number</label>
+        <label for="doc-number">Document Number*</label>
     </p-floatlabel>
 
     <p-floatlabel class="w-full mt-5">
         <input pInputText id="first-name" autocomplete="off" formControlName="firstName" />
-        <label for="first-name">First Name</label>
+        <label for="first-name">First Name*</label>
     </p-floatlabel>
     
     <p-floatlabel class="w-full mt-5">
         <input pInputText id="last-name" autocomplete="off" formControlName="lastName" />
-        <label for="last-name">Last Name</label>
+        <label for="last-name">Last Name*</label>
     </p-floatlabel>
     
     <p-floatlabel class="w-full mt-5">
         <input pInputText id="email" autocomplete="off" formControlName="email" />
-        <label for="email">Email</label>
+        <label for="email">Email*</label>
+    </p-floatlabel>
+
+
+    <p-floatlabel class="w-full mt-5">
+        <p-select [options]="jobFunctions" dataKey="code" optionLabel="name" placeholder="__________" class="w-full md:w-56"  formControlName="jobFunction" />
+        <label >Job Function*</label>
     </p-floatlabel>
 
     <p-floatlabel class="w-full mt-5">
-        <input pInputText id="birth-date" autocomplete="off" formControlName="birthDate" />
-        <label for="birth-date">Birth Date</label>
+        <p-datepicker formControlName="birthDate" class="w-full" styleClass="w-full"  />
+        <label for="birth-date">Birth Date*</label>
     </p-floatlabel>
 
     <p-floatlabel class="w-full mt-5">
-        <p-select [options]="jobFunctions" optionLabel="name" placeholder="__________" class="w-full md:w-56" />
-        <label >Job Function</label>
+        <p-select [options]="employees" dataKey="id" optionLabel="fullName" placeholder="_______" class="w-full md:w-56" formControlName="manager"/>
+        <label>Manager (optional)</label>
     </p-floatlabel>
+
+
+    <div class="flex justify-content-between mt-5 mb-2">
+        <strong>Phones</strong>
+        <button pButton type="button" class="add-btn" (click)="addPhone()">
+            Add
+            <fa-icon [icon]="iconAdd" ></fa-icon>
+        </button>
+    </div>
+    <ng-container formArrayName="phones">
+        <div class="w-full flex" *ngIf="phonesArray.controls.length">
+            <div class="w-full">Label*</div>
+            <div class="w-full" style="margin-left: -1rem;">Number*</div>
+        </div>
+        @for (phone of phonesArray.controls; track phone; let i = $index) {
+            <div class="flex mb-2" [formGroupName]="i" >
+                <input pInputText autocomplete="off" formControlName="label" placeholder="Mobile" />
+                <input pInputText autocomplete="off" formControlName="number" placeholder="+5541999999999" class="ml-2" />
+                <button pButton type="button" class="add-btn p-button-danger ml-2" (click)="deletePhone(i)">
+                    <fa-icon [icon]="iconRemove" ></fa-icon>
+                </button>
+            </div>
+        }
+    </ng-container>
+
+    @if (isNewEmployee) {
+        <p-floatlabel class="w-full mt-5">
+            <input pInputText id="psw" autocomplete="off" formControlName="password" type="password" />
+            <label for="psw">Password*</label>
+        </p-floatlabel>
+
+        <p-floatlabel class="w-full mt-5">
+            <input pInputText id="confirmPsw" autocomplete="off" formControlName="confirmPassword" type="password" />
+            <label for="confirmPsw">Confirm Password*</label>
+        </p-floatlabel>
+
+    }
+
+    <div class="flex justify-content-end mt-2">
+        <button  *ngIf="!loading()" pButton class="p-button-success">Save <fa-icon [icon]="iconSave"></fa-icon></button>
+        <loading *ngIf="loading()"></loading>
+    </div>
 </form>

@@ -72,7 +72,7 @@ export class LoginService {
 
     const jwtDecoded = this.session.decodeJWT(token);
   
-    const document = jwtDecoded.sub; //todo
+    const document = jwtDecoded.sub;
     
     const promise = this.employeeApi.getEmployee(document);
 

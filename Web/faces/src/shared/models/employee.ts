@@ -26,5 +26,7 @@ export interface Employee {
     manager: Employee | null;
 
     phones: Phone[];
+
+    password?:string;
 }
 

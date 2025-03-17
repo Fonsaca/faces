@@ -6,10 +6,15 @@
             <th>Document</th>
             <th>Name</th>
             <th>Email</th>
-            <th class="actions-col">Actions
-
+            <th class="actions-col">
+                <div class="w-full flex justify-content-end align-items-center">
+                    Actions
                 <loading *ngIf="loading()"></loading>
-                <button  *ngIf="!loading()" pButton class="p-success ml-2" (click)="showingFormsModal = true">New <fa-icon [icon]="iconNew"></fa-icon> </button>
+                <button  *ngIf="!loading()" pButton class="p-success ml-2" (click)="openFormsModal()">
+                    New 
+                    <fa-icon [icon]="iconNew"></fa-icon> 
+                </button>
+                </div>
             </th>
         </tr>
     </ng-template>
@@ -19,9 +24,15 @@
             <td>{{ employee.fullName }}</td>
             <td>{{ employee.email }}</td>
             <td class="actions-col">
-                <button pButton class="p-button-info" >Edit <fa-icon [icon]="iconEdit"></fa-icon> </button>
+                <button pButton class="p-button-info" (click)="openFormsModal(employee)" >
+                    Edit 
+                    <fa-icon [icon]="iconEdit"></fa-icon> 
+                </button>
             
-                <button pButton class="p-button-danger ml-2">Delete <fa-icon [icon]="iconDelete"></fa-icon> </button>
+                <button pButton class="p-button-danger ml-2" (click)="openDeleteModal(employee)">
+                    Delete 
+                    <fa-icon [icon]="iconDelete"></fa-icon> 
+                </button>
             </td>
         </tr>
     </ng-template>
@@ -29,15 +40,13 @@
 
 <p-dialog [(visible)]="showingFormsModal" [modal]="true" [dismissableMask]="false">
     <ng-template #header>
-      <h4 class="mb-0">NEW</h4>
+      <h4 class="mb-0" *ngIf="!selectedFormsEmployee">NEW EMPLOYEE</h4>
+      <h4 class="mb-0" *ngIf="selectedFormsEmployee">EDIT EMPLOYEE</h4>
     </ng-template>
 
-
     <div class="modal-content">
-
-        <emp-man-form></emp-man-form>
-
-
+        <emp-man-form [employees]=employees [employee]="selectedFormsEmployee" *ngIf="showingFormsModal" (saved)="requestEmployees();showingFormsModal=false"></emp-man-form>
     </div>
-
 </p-dialog>
+
+<delete-modal [(showingModal)]="showingDeleteModal" [employee]="selectedDeleteEmployee!"></delete-modal>
